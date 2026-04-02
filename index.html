@@ -15,49 +15,46 @@
             --glass: rgba(255, 255, 255, 0.12);
         }
 
-        body {
+        body, html {
             margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevents all scrolling */
             font-family: 'Poppins', sans-serif;
-            background: #1a0b2e; /* Darker base for better pulse visibility */
+            background: #1a0b2e;
             background: radial-gradient(circle at center, #2e0052 0%, var(--deep-purple) 100%);
             color: var(--cream);
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
         }
 
-        /* --- THE PULSE (STRICT LOCK) --- */
         #canvas-web {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0; /* Behind content but above background */
+            z-index: 0;
             opacity: 0.8;
             pointer-events: none;
         }
 
-        header, .container {
-            position: relative;
-            z-index: 10; /* Ensures content is clickable above the pulse */
-        }
-
+        /* --- STICKY FLEX HEADER --- */
         header {
+            flex: 0 1 auto;
             width: 100%;
-            padding: 2.5rem 0;
+            padding: 1.5vh 0; /* Responsive vertical padding */
             text-align: center;
             background: rgba(45, 27, 77, 0.4);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 10;
         }
 
         h1 { 
             font-family: 'DotGothic16', sans-serif;
-            font-size: 3.2rem;
-            letter-spacing: 6px;
+            font-size: clamp(1.5rem, 6vh, 3.2rem); /* Dynamic resizing */
+            letter-spacing: 4px;
             color: var(--pastel-pink);
             margin: 0; 
             text-transform: uppercase;
@@ -66,79 +63,72 @@
             text-shadow: 0 0 15px var(--lavender);
         }
 
-        h1::before, h1::after {
-            content: "VELVET SHARK STUDIO";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-        }
+        .tagline { font-style: italic; color: var(--soft-blue); margin-top: 0.5vh; font-size: clamp(0.7rem, 2vh, 0.95rem); }
 
-        h1::before { color: #00fff9; z-index: -1; animation: glitch-drift 0.9s infinite alternate-reverse; clip-path: inset(10% 0 80% 0); }
-        h1::after { color: #ff00c1; z-index: -1; animation: glitch-drift 1.1s infinite alternate; clip-path: inset(80% 0 5% 0); }
-
-        @keyframes glitch-drift {
-            0% { transform: translate(3px, -2px); clip-path: inset(10% 0 70% 0); }
-            20% { transform: translate(-3px, 2px); clip-path: inset(40% 0 20% 0); }
-            100% { transform: translate(3px, -1px); clip-path: inset(0% 0 90% 0); }
-        }
-
-        .tagline { font-style: italic; color: var(--soft-blue); margin-top: 10px; padding: 0 1rem; font-size: 0.95rem; }
-
-        .nav { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .nav { margin-top: 1vh; display: flex; justify-content: center; gap: 15px; }
         .nav a { 
             color: var(--cream); 
             text-decoration: none; 
             font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.7rem, 1.8vh, 1rem);
             transition: 0.3s;
-            padding-bottom: 3px;
         }
 
         .nav a.active { color: var(--pastel-pink); border-bottom: 2px solid var(--pastel-pink); }
 
-        .container {
-            max-width: 900px;
-            padding: 2rem;
-            width: 90%;
-            margin-top: 1rem;
+        /* --- MAIN CONTENT AREA --- */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2vh;
+            z-index: 10;
         }
 
         .card {
             background: var(--glass);
             backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 3vh 2.5rem;
             border: 1px solid rgba(255,255,255,0.1);
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
+
+        h2 { font-size: clamp(1.2rem, 3.5vh, 2rem); margin-bottom: 1vh; margin-top: 0; color: var(--lavender); }
+        p { font-size: clamp(0.8rem, 2vh, 1rem); margin-bottom: 2vh; line-height: 1.4; }
 
         .terminal {
             background: #121212;
             font-family: 'JetBrains Mono', monospace;
-            padding: 1.5rem;
+            padding: 2vh;
             border-radius: 12px;
             color: #00ff00;
             border-left: 4px solid var(--pastel-pink);
-            margin-top: 1.5rem;
-            line-height: 1.8;
+            line-height: 1.5;
+            font-size: clamp(0.7rem, 1.8vh, 0.9rem);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            word-break: break-all;
         }
 
         .cursor {
             display: inline-block;
             width: 8px;
-            height: 16px;
+            height: 1.2em;
             background: #00ff00;
             animation: blink 1s infinite;
             vertical-align: middle;
-            margin-left: 4px;
         }
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; letter-spacing: 2px; }
-            .container { width: 95%; padding: 1rem; }
-            .card { padding: 1.5rem; }
-            .terminal { font-size: 0.75rem; padding: 1rem; overflow-x: hidden; }
-            .nav a { font-size: 0.85rem; margin: 0 5px; }
+            .card { padding: 2vh 1.5rem; }
+            .nav { gap: 8px; }
         }
     </style>
 </head>
@@ -158,13 +148,13 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="main-wrapper">
         <div class="card">
-            <h2 style="color: var(--lavender); margin-top: 0;">System Initialized 🦈</h2>
+            <h2>System Initialized 🦈</h2>
             <p>I’m a security researcher who believes a well-built exploit is just as much an art form as a well-placed pixel.</p>
             <div class="terminal">
                 $ whoami <br>
-                > velvetshark <br>
+                > velvetshark<br>
                 $ status <br>
                 > building_something_awesome...<span class="cursor"></span>
             </div>
@@ -188,8 +178,8 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.6 - 0.3; 
-                this.speedY = Math.random() * 0.6 - 0.3;
+                this.speedX = Math.random() * 0.4 - 0.2; 
+                this.speedY = Math.random() * 0.4 - 0.2;
                 this.color = colors[Math.floor(Math.random() * colors.length)];
             }
             update() {
@@ -208,7 +198,7 @@
 
         function init() {
             particles = [];
-            let particleCount = window.innerWidth < 600 ? 50 : 100;
+            let particleCount = window.innerWidth < 600 ? 40 : 80;
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
@@ -223,10 +213,10 @@
                     const dx = p.x - particles[j].x;
                     const dy = p.y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 150) {
+                    if (dist < 120) { // Slightly shorter distance for cleaner mobile look
                         ctx.strokeStyle = p.color;
-                        ctx.lineWidth = 0.4;
-                        ctx.globalAlpha = 1 - (dist / 150);
+                        ctx.lineWidth = 0.3;
+                        ctx.globalAlpha = 1 - (dist / 120);
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(particles[j].x, particles[j].y);
