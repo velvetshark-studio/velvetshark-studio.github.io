@@ -30,6 +30,22 @@
         h2 { color: var(--lavender); margin: 0 0 10px 0; }
         .links { margin-top: 15px; font-family: 'JetBrains Mono'; font-size: 0.8rem; }
         .links a { color: var(--soft-blue); text-decoration: none; }
+
+        .nav a { 
+        color: var(--cream); 
+        text-decoration: none; 
+        margin: 0 15px; 
+        font-weight: 300; 
+        font-size: 0.9rem; 
+        transition: 0.3s; 
+        }
+
+        /* This makes the tabs glow when you hover over them */
+        .nav a:hover { 
+        color: var(--pastel-pink); 
+        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+        transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
