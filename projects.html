@@ -40,6 +40,12 @@
         transition: 0.3s; 
         }
 
+        .nav a.active {
+        color: var(--pastel-pink);
+        border-bottom: 2px solid var(--pastel-pink);
+        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+       }
+
         /* This makes the tabs glow when you hover over them */
         .nav a:hover { 
         color: var(--pastel-pink); 
@@ -54,7 +60,7 @@
         <div class="nav">
             <a href="index.html">Home</a>
             <a href="blog.html">Blog</a>
-            <a href="projects.html">Projects</a>
+            <a href="projects.html"> class="active">Projects</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
