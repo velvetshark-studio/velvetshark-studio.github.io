@@ -59,7 +59,11 @@
 
         .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; }
         .nav a:hover { color: var(--pastel-pink); text-decoration: underline; }
-
+        .nav a.active {
+        color: var(--pastel-pink);
+        border-bottom: 2px solid var(--pastel-pink);
+        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+        }
         .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
 
         /* Blog Post Cards */
@@ -104,7 +108,7 @@
         <h1>VELVET SHARK STUDIO</h1>
         <div class="nav">
             <a href="index.html">Home</a>
-            <a href="blog.html">Blog</a>
+            <a href="blog.html" class="active">Blog</a>
             <a href="projects.html">Projects</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
