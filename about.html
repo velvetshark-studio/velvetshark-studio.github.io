@@ -10,87 +10,65 @@
             --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; 
             --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); --peach: #FFDAB9; 
         }
-        body { margin: 0; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, var(--deep-purple), #4B0082); color: var(--cream); min-height: 100vh; display: flex; flex-direction: column; align-items: center; overflow: hidden; padding-bottom: 50px;}
+
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, var(--deep-purple), #4B0082); 
+            color: var(--cream); min-height: 100vh;
+            display: flex; flex-direction: column;
+            overflow-y: auto; /* Re-enabling scroll so nothing gets cut off */
+        }
         
-        header { width: 100%; padding: 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        header { width: 100%; padding: 1.2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
         .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; font-size: 0.9rem; transition: 0.3s; }
         .nav a:hover { color: var(--pastel-pink); text-shadow: 0 0 10px var(--pastel-pink); }
 
-        /* THE DASHBOARD WRAPPER */
-        .dashboard {
-            display: flex; flex-direction: row; justify-content: center; align-items: stretch;
-            gap: 20px; max-width: 1200px; width: 95%; margin-top: 3rem; height: auto;
+        /* THE RESPONSIVE LAYOUT */
+        .main-content {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 20px; max-width: 900px; width: 95%; margin: 2rem auto;
         }
 
-        /* BIO CARD */
+        /* BIO CARD - Now slimmer */
         .about-card { 
-            flex: 1.2; background: var(--glass); backdrop-filter: blur(20px); border-radius: 30px; 
-            padding: 2.5rem; border: 1px solid rgba(255,255,255,0.1); text-align: center;
+            width: 100%; background: var(--glass); 
+            backdrop-filter: blur(20px); border-radius: 25px; 
+            padding: 2rem; border: 1px solid rgba(255,255,255,0.1); text-align: center;
         }
         
-        /* SLOGAN CONTAINER */
+        /* SLOGAN CONTAINER - Shrink-wrapped to fit the text */
         .slogan-container {
-            flex: 1; background: linear-gradient(135deg, rgba(255, 209, 220, 0.1), rgba(255, 218, 185, 0.1));
-            backdrop-filter: blur(15px); border-radius: 30px; padding: 30px; border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            width: 100%; max-width: 700px;
+            background: linear-gradient(135deg, rgba(255, 209, 220, 0.05), rgba(255, 218, 185, 0.05));
+            backdrop-filter: blur(10px); border-radius: 20px; 
+            padding: 25px 40px; /* Reduced padding to make box smaller */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative; overflow: hidden; 
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .slogan-text {
-            color: var(--pastel-pink); font-weight: 600; font-style: italic; font-size: 1.1rem;
-            line-height: 1.6; text-shadow: 2px 2px 5px rgba(0,0,0,0.7); z-index: 10; position: relative;
+            color: var(--pastel-pink); font-weight: 600; font-style: italic; font-size: 1rem;
+            line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8); z-index: 10; position: relative;
         }
 
-        /* --- THE ANTI-COLLISION PARTICLES --- */
-        .bg-emoji {
-            position: absolute; z-index: 1; opacity: 0.3; filter: blur(0.5px);
-            pointer-events: none; user-select: none;
+        /* --- MINI FLOATING PARTICLES --- */
+        .bg-emoji { position: absolute; z-index: 1; opacity: 0.3; filter: blur(0.5px); pointer-events: none; }
+
+        .e1 { font-size: 1.8rem; top: 5%; left: 5%; animation: drift 12s infinite linear; } /* 🐾 */
+        .e2 { font-size: 1.8rem; bottom: 5%; right: 5%; animation: drift 10s infinite linear reverse; } /* 🌸 */
+        .e3 { font-size: 2.5rem; bottom: 10%; left: 15%; animation: drift 18s infinite linear; opacity: 0.15; } /* 🦈 */
+        .e4 { font-size: 2rem; top: 10%; right: 15%; animation: drift 14s infinite linear; } /* 🛡️ */
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, 15px) rotate(10deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
 
-        /* Unique positions with ANTI-CLASH paths */
-        
-        /* 🐾 - Central and slow */
-        .e1 { font-size: 2.5rem; top: 10%; left: 10%; animation: drift-slow 20s infinite linear; color: var(--peach); } 
-        
-        /* 🌷 - Stays in the bottom right corner */
-        .e2 { font-size: 2rem; bottom: 10%; right: 10%; animation: drift-mid 15s infinite linear reverse; } 
-        
-        /* 🫧 - Moves vertically, keeping clear of center text */
-        .e3 { font-size: 1.5rem; top: 40%; left: 70%; animation: drift-fast 12s infinite ease-in-out; } 
-        
-        /* 🦈 - THE FIX: Stays only in the lower left quadrant */
-        .e4 { font-size: 3.5rem; bottom: 20%; left: 15%; animation: drift-corner-left 25s infinite linear; opacity: 0.25; } 
-        
-        /* 🔍 - Central watermark */
-        .e5 { font-size: 1.8rem; top: 15%; right: 20%; animation: drift-mid 18s infinite ease-in-out; } 
-        
-        /* 🛡️ - THE FIX: Stays only in the upper right quadrant */
-        .e6 { font-size: 2.5rem; top: 30%; right: 15%; animation: drift-corner-right 14s infinite linear; } 
-
-        /* Specialized corner drift path: stays clear of center-right */
-        @keyframes drift-corner-left {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(60px, 30px); } /* moves towards center-left, not center-right */
-            100% { transform: translate(0, 0); }
-        }
-
-        @keyframes drift-corner-right {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(-60px, -30px); } /* moves towards center-right, not center-left */
-            100% { transform: translate(0, 0); }
-        }
-
-        /* Normal Drift paths for variety */
-        @keyframes drift-slow { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(150px, 30px) rotate(180deg); } 100% { transform: translate(0, 0) rotate(360deg); } }
-        @keyframes drift-mid { 0% { transform: translate(0, 0); } 33% { transform: translate(-100px, -40px); } 66% { transform: translate(50px, -20px); } 100% { transform: translate(0, 0); } }
-        @keyframes drift-fast { 0% { transform: scale(1) translate(0,0); } 50% { transform: scale(1.3) translate(-80px, 50px); } 100% { transform: scale(1) translate(0,0); } }
-
-        .skill-badge { display: inline-block; border: 1px solid var(--lavender); padding: 5px 15px; border-radius: 20px; margin: 5px; font-size: 0.8rem; background: rgba(255,255,255,0.05); }
-
-        /* Mobile Fix */
-        @media (max-width: 900px) { .dashboard { flex-direction: column; overflow-y: auto; height: auto; } body { overflow-y: auto; } }
-    </style>
-</head>
+        .skill-badge { display: inline-block; border: 1px solid var(--lavender); padding: 4px 12px; border-radius: 15px; margin: 4px; font-size: 0.75rem; background: rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
@@ -101,18 +79,17 @@
             <a href="blog.html">Blog</a>
             <a href="projects.html">Projects</a>
             <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
         </div>
     </header>
 
-    <div class="dashboard">
+    <div class="main-content">
         <div class="about-card">
-            <div style="font-size: 3.5rem; margin-bottom: 10px;">🦈</div>
-            <h2>Who is Velvet Shark?</h2>
-            <p>I am a cybersecurity enthusiast and a creative explorer. I believe that technical work can be soft, colorful, and inviting. My journey involves breaking into systems while keeping the aesthetic perfectly "iced."</p>
+            <div style="font-size: 3rem; margin-bottom: 10px;">🦈</div>
+            <h2 style="margin: 10px 0;">Who is Velvet Shark?</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6;">I am a cybersecurity enthusiast and a creative explorer. I believe technical work can be soft, colorful, and inviting. My journey involves breaking into systems while keeping the aesthetic perfectly "iced."</p>
             
-            <h3 style="color: var(--lavender); margin-top: 20px;">Current Skills</h3>
-            <div class="container">
+            <h4 style="color: var(--lavender); margin-top: 20px; margin-bottom: 10px;">Current Skills</h4>
+            <div>
                 <div class="skill-badge">Nmap</div><div class="skill-badge">Python</div>
                 <div class="skill-badge">Forensics</div><div class="skill-badge">Linux Customization</div>
             </div>
@@ -120,11 +97,9 @@
 
         <div class="slogan-container">
             <span class="bg-emoji e1">🐾</span>
-            <span class="bg-emoji e2">🌸</span> <span class="bg-emoji e3">🫧</span>
-            <span class="bg-emoji e4">🦈</span>
-            <span class="bg-emoji e5">🔍</span>
-            <span class="bg-emoji e6">🛡️</span>
-            
+            <span class="bg-emoji e2">🌸</span>
+            <span class="bg-emoji e3">🦈</span>
+            <span class="bg-emoji e4">🛡️</span>
             <span class="slogan-text">
                 "Jack of all cards, master of none, but oftentimes better than a master of one"
             </span>
