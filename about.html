@@ -10,117 +10,84 @@
             --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; 
             --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); --peach: #FFDAB9; 
         }
-        body { margin: 0; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, var(--deep-purple), #4B0082); color: var(--cream); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 50px; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, var(--deep-purple), #4B0082); color: var(--cream); min-height: 100vh; display: flex; flex-direction: column; align-items: center; overflow: hidden; padding-bottom: 50px;}
         
         header { width: 100%; padding: 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
         .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; font-size: 0.9rem; transition: 0.3s; }
-        .nav a:hover { color: var(--pastel-pink); text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender); transform: translateY(-2px); }
+        .nav a:hover { color: var(--pastel-pink); text-shadow: 0 0 10px var(--pastel-pink); }
 
-        .about-card { max-width: 700px; width: 90%; background: var(--glass); backdrop-filter: blur(20px); border-radius: 30px; padding: 3rem; margin-top: 3rem; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        /* THE DASHBOARD WRAPPER */
+        .dashboard {
+            display: flex; flex-direction: row; justify-content: center; align-items: stretch;
+            gap: 20px; max-width: 1200px; width: 95%; margin-top: 3rem; height: auto;
+        }
+
+        /* BIO CARD */
+        .about-card { 
+            flex: 1.2; background: var(--glass); backdrop-filter: blur(20px); border-radius: 30px; 
+            padding: 2.5rem; border: 1px solid rgba(255,255,255,0.1); text-align: center;
+        }
         
-        /* STABLE SLOGAN CONTAINER */
+        /* SLOGAN CONTAINER */
         .slogan-container {
-            max-width: 650px;
-            width: 85%;
-            margin-top: 25px;
-            background: linear-gradient(135deg, rgba(255, 209, 220, 0.1), rgba(255, 218, 185, 0.1));
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 50px 30px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative; 
-            overflow: hidden;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            flex: 1; background: linear-gradient(135deg, rgba(255, 209, 220, 0.1), rgba(255, 218, 185, 0.1));
+            backdrop-filter: blur(15px); border-radius: 30px; padding: 30px; border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
         .slogan-text {
-            color: var(--pastel-pink);
-            font-weight: 600;
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* Stronger shadow to pop over emojis */
-            z-index: 10;
-            position: relative;
+            color: var(--pastel-pink); font-weight: 600; font-style: italic; font-size: 1.1rem;
+            line-height: 1.6; text-shadow: 2px 2px 5px rgba(0,0,0,0.7); z-index: 10; position: relative;
         }
 
-        /* --- THE FLOATING PARTICLES --- */
+        /* --- THE ANTI-COLLISION PARTICLES --- */
         .bg-emoji {
-            position: absolute;
-            z-index: 1;
-            opacity: 0.3; /* Increased opacity for visibility */
-            filter: blur(0.5px);
-            pointer-events: none;
-            user-select: none;
+            position: absolute; z-index: 1; opacity: 0.3; filter: blur(0.5px);
+            pointer-events: none; user-select: none;
         }
 
-        /* Unique positions and animations */
-        .e1 { font-size: 2.5rem; top: 10%; left: 10%; animation: drift-slow 20s infinite linear; color: var(--peach); } /* 🐾 */
-        .e2 { font-size: 2rem; bottom: 15%; right: 10%; animation: drift-mid 15s infinite linear reverse; } /* 🌷 */
-        .e3 { font-size: 1.5rem; top: 40%; left: 70%; animation: drift-fast 12s infinite ease-in-out; } /* 🫧 */
-        .e4 { font-size: 3rem; bottom: 20%; left: 15%; animation: drift-slow 25s infinite linear; opacity: 0.2; } /* 🦈 */
-        .e5 { font-size: 1.8rem; top: 15%; right: 20%; animation: drift-mid 18s infinite ease-in-out; } /* 🔍 */
-        .e6 { font-size: 2.2rem; bottom: 40%; left: 40%; animation: drift-fast 14s infinite linear; } /* 🛡️ */
+        /* Unique positions with ANTI-CLASH paths */
+        
+        /* 🐾 - Central and slow */
+        .e1 { font-size: 2.5rem; top: 10%; left: 10%; animation: drift-slow 20s infinite linear; color: var(--peach); } 
+        
+        /* 🌷 - Stays in the bottom right corner */
+        .e2 { font-size: 2rem; bottom: 10%; right: 10%; animation: drift-mid 15s infinite linear reverse; } 
+        
+        /* 🫧 - Moves vertically, keeping clear of center text */
+        .e3 { font-size: 1.5rem; top: 40%; left: 70%; animation: drift-fast 12s infinite ease-in-out; } 
+        
+        /* 🦈 - THE FIX: Stays only in the lower left quadrant */
+        .e4 { font-size: 3.5rem; bottom: 20%; left: 15%; animation: drift-corner-left 25s infinite linear; opacity: 0.25; } 
+        
+        /* 🔍 - Central watermark */
+        .e5 { font-size: 1.8rem; top: 15%; right: 20%; animation: drift-mid 18s infinite ease-in-out; } 
+        
+        /* 🛡️ - THE FIX: Stays only in the upper right quadrant */
+        .e6 { font-size: 2.5rem; top: 30%; right: 15%; animation: drift-corner-right 14s infinite linear; } 
 
-        @keyframes drift-slow {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(150px, 30px) rotate(180deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
-        }
-
-        @keyframes drift-mid {
+        /* Specialized corner drift path: stays clear of center-right */
+        @keyframes drift-corner-left {
             0% { transform: translate(0, 0); }
-            33% { transform: translate(-100px, -40px); }
-            66% { transform: translate(50px, -20px); }
+            50% { transform: translate(60px, 30px); } /* moves towards center-left, not center-right */
             100% { transform: translate(0, 0); }
         }
 
-        @keyframes drift-fast {
-            0% { transform: scale(1) translate(0,0); }
-            50% { transform: scale(1.3) translate(-80px, 50px); }
-            100% { transform: scale(1) translate(0,0); }
+        @keyframes drift-corner-right {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-60px, -30px); } /* moves towards center-right, not center-left */
+            100% { transform: translate(0, 0); }
         }
 
+        /* Normal Drift paths for variety */
+        @keyframes drift-slow { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(150px, 30px) rotate(180deg); } 100% { transform: translate(0, 0) rotate(360deg); } }
+        @keyframes drift-mid { 0% { transform: translate(0, 0); } 33% { transform: translate(-100px, -40px); } 66% { transform: translate(50px, -20px); } 100% { transform: translate(0, 0); } }
+        @keyframes drift-fast { 0% { transform: scale(1) translate(0,0); } 50% { transform: scale(1.3) translate(-80px, 50px); } 100% { transform: scale(1) translate(0,0); } }
+
         .skill-badge { display: inline-block; border: 1px solid var(--lavender); padding: 5px 15px; border-radius: 20px; margin: 5px; font-size: 0.8rem; background: rgba(255,255,255,0.05); }
+
+        /* Mobile Fix */
+        @media (max-width: 900px) { .dashboard { flex-direction: column; overflow-y: auto; height: auto; } body { overflow-y: auto; } }
     </style>
 </head>
-<body>
-    <header>
-        <h1>VELVET SHARK STUDIO</h1>
-        <div class="nav">
-            <a href="index.html">Home</a>
-            <a href="blog.html">Blog</a>
-            <a href="projects.html">Projects</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
-    </header>
-
-    <div class="about-card">
-        <div style="font-size: 4rem; margin-bottom: 10px;">🦈</div>
-        <h2>Who is Velvet Shark?</h2>
-        <p>I am a cybersecurity enthusiast and a creative explorer. I believe that technical work doesn't have to be cold and dark—it can be soft, colorful, and inviting.</p>
-        
-        <h3 style="color: var(--lavender); margin-top: 30px;">Current Skills</h3>
-        <div class="skill-badge">Nmap</div><div class="skill-badge">Python</div><div class="skill-badge">Forensics</div><div class="skill-badge">Linux Customization</div>
-    </div>
-
-    <div class="slogan-container">
-        <span class="bg-emoji e1">🐾</span>
-        <span class="bg-emoji e2">🌷</span>
-        <span class="bg-emoji e3">🫧</span>
-        <span class="bg-emoji e4">🦈</span>
-        <span class="bg-emoji e5">🔍</span>
-        <span class="bg-emoji e6">🛡️</span>
-        
-        <span class="slogan-text">
-            "Jack of all cards, master of none, but oftentimes better than a master of one"
-        </span>
-    </div>
-
-</body>
-</html>
