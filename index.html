@@ -77,31 +77,58 @@
         .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; }
         .nav a:hover { color: var(--pastel-pink); }
 
-        /* CUTE STUFF: Background Sharks & Bubbles */
+/* --- CAFE CUTE STUFF: Floating Background Objects --- */
+        
+        /* 1. The Large Main Shark 🦈 (on body) */
         body::before {
             content: "🦈";
             position: fixed;
-            top: 15%; left: 8%;
-            font-size: 5rem;
-            opacity: 0.1;
-            filter: blur(1px);
+            top: 25%; left: 8%;
+            font-size: 6rem;
+            opacity: 0.08; /* Subtler */
+            filter: blur(2px);
             animation: float 8s ease-in-out infinite;
             z-index: -1;
         }
 
+        /* 2. A Lavender & A Cute Hacker 🌸 👩‍💻 (on body) */
         body::after {
-            content: "🫧";
+            content: "🌸 👩‍💻"; /* Combining them */
             position: fixed;
-            bottom: 15%; right: 10%;
+            bottom: 20%; right: 10%;
             font-size: 4rem;
-            opacity: 0.15;
+            opacity: 0.1;
             animation: float 6s ease-in-out infinite reverse;
             z-index: -1;
         }
 
+        /* 3. Bubbles & a Terminal 🫧 🖥️ (on header) */
+        header::before {
+            content: "🖥️ 🫧";
+            position: fixed;
+            top: 10%; right: 15%;
+            font-size: 3rem;
+            opacity: 0.12;
+            animation: float 5s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        /* 4. A Teacup & Another Small Shark 🍵 🦈 (on header) */
+        header::after {
+            content: "🍵 🦈";
+            position: fixed;
+            bottom: 30%; left: 15%;
+            font-size: 3.5rem;
+            opacity: 0.09;
+            filter: blur(1px);
+            animation: float 7s ease-in-out infinite reverse;
+            z-index: -1;
+        }
+
+        /* The gentle animation */
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
+            50% { transform: translateY(-25px) rotate(8deg); }
         }
 
     </style>
