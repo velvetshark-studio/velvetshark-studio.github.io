@@ -18,39 +18,55 @@
         }
 
         /* --- THE PRETTY FLOATING GARDEN --- */
-            /* --- CONTACT SECTION EMOJI POSITIONING --- */
+/* --- THE PRETTY FLOATING GARDEN --- */
 
-/* Candy/Flower (Left) - Original horizontal, lowered vertical */
+/* 1. The Missing Group (🌸 🔮 ✨) - Lowered to 25% to clear the header */
+body::before { 
+    content: "🌸 🔮 ✨"; 
+    position: fixed; 
+    top: 25%;           /* Changed from 10% to 25% to push it down */
+    left: 5%; 
+    font-size: 4rem; 
+    opacity: 0.12; 
+    animation: float 10s infinite; 
+    z-index: -1; 
+}
+
+/* 2. The Bottom Group (🦈 🫧 💠) */
+body::after { 
+    content: "🦈 🫧 💠"; 
+    position: fixed; 
+    bottom: 15%; 
+    right: 5%; 
+    font-size: 4.5rem; 
+    opacity: 0.1; 
+    animation: float 7s infinite reverse; 
+    z-index: -1; 
+}
+
+/* 3. The Right Side Group (🌷 🫧) - Lowered to 45% */
+header::before { 
+    content: "🌷 🫧"; 
+    position: fixed; 
+    top: 45%;           /* Lowered to clear the navigation bar */
+    right: 12%; 
+    font-size: 3rem; 
+    opacity: 0.08; 
+    animation: float 9s infinite; 
+    z-index: -1; 
+}
+
+/* 4. The Left Side Group (🍬 ✨) - Lowered to 60% */
 header::after { 
     content: "🍬 ✨"; 
     position: fixed; 
-    top: 40%; /* Lowered from original position */
+    top: 60%;           /* Pushed down further to stay in the body area */
     left: 15%; 
     font-size: 3.5rem; 
     opacity: 0.1; 
     animation: float 11s infinite reverse; 
     z-index: -1; 
 }
-
-/* Middle Emoji Group (if applicable to your floating garden) */
-/* If you are using a third grouping for the middle 🔮 */
-.contact-middle-emojis {
-    top: 45%; 
-    left: 45%;
-}
-
-/* Tulip/Bubble (Right) - Original horizontal, lowered vertical */
-        header::before { 
-        content: "🌷 🫧"; 
-        position: fixed; 
-        top: 42%; /* Lowered to keep it clear of the bar */
-        right: 12%; 
-        font-size: 3rem; 
-        opacity: 0.08; 
-        animation: float 9s infinite; 
-        z-index: -1; 
-        }
-        body::after { content: "🦈 🫧 💠"; position: fixed; bottom: 15%; right: 5%; font-size: 4.5rem; opacity: 0.1; animation: float 7s infinite reverse; z-index: -1; }
         
         header::before { content: "🌷 🫧"; position: fixed; top: 40%; right: 12%; font-size: 3rem; opacity: 0.08; animation: float 9s infinite; z-index: -1; }
         header::after { content: "🍬 ✨"; position: fixed; bottom: 10%; left: 15%; font-size: 3.5rem; opacity: 0.1; animation: float 11s infinite reverse; z-index: -1; }
