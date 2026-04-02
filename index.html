@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velvet Shark Studio | Cyber Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Syne+Mono&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
             --deep-purple: #2D1B4D;
@@ -13,6 +13,7 @@
             --soft-blue: #AEC6CF;
             --cream: #FFFDD0;
             --glass: rgba(255, 255, 255, 0.1);
+            --cyber-orange: #FF4500; /* Color inspired by your reference */
         }
 
         body {
@@ -26,7 +27,6 @@
             align-items: center;
         }
 
-        /* Glassmorphism Header */
         header {
             width: 100%;
             padding: 2rem;
@@ -36,17 +36,59 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        h1 { font-weight: 600; letter-spacing: 2px; color: var(--pastel-pink); margin: 0; }
+        /* --- UPDATED CYBER GLITCH TITLE --- */
+        h1 { 
+            font-family: 'Syne Mono', monospace;
+            font-weight: 600; 
+            font-size: 2.8rem;
+            letter-spacing: 5px; 
+            color: var(--cyber-orange); 
+            margin: 0; 
+            position: relative;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        h1:hover {
+            color: var(--pastel-pink);
+            text-shadow: 0 0 15px var(--pastel-pink);
+            animation: glitch-hover 0.5s infinite;
+        }
+
+        /* Glitch Layers */
+        h1::before, h1::after {
+            content: "VELVET SHARK STUDIO";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        h1:hover::before {
+            opacity: 1;
+            color: #ff00c1;
+            z-index: -1;
+            animation: glitch-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+        }
+
+        h1:hover::after {
+            opacity: 1;
+            color: #00fff9;
+            z-index: -1;
+            animation: glitch-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+        }
+
         .tagline { font-style: italic; color: var(--soft-blue); margin-top: 5px; }
 
-        /* Main Container */
+        /* --- CONTAINER & CARDS --- */
         .container {
             max-width: 900px;
             padding: 2rem;
             width: 90%;
         }
 
-        /* Rounded Glass Cards */
         .card {
             background: var(--glass);
             backdrop-filter: blur(15px);
@@ -60,7 +102,6 @@
 
         .card:hover { transform: translateY(-5px); }
 
-        /* Terminal Style Snippets */
         .terminal {
             background: #1a1a1a;
             font-family: 'JetBrains Mono', monospace;
@@ -74,26 +115,36 @@
         h2 { color: var(--lavender); border-bottom: 1px solid var(--glass); padding-bottom: 10px; }
         
         .nav { margin-top: 20px; }
-        .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; }
-        .nav a:hover { color: var(--pastel-pink); }
-
-/* --- CAFE CUTE STUFF: Floating Background Objects --- */
+        .nav a { 
+            color: var(--cream); 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: 300; 
+            font-size: 0.9rem; 
+            transition: 0.3s; 
+            font-family: 'JetBrains Mono', monospace;
+        }
         
-        /* 1. The Large Main Shark 🦈 (on body) */
+        .nav a:hover { 
+            color: var(--pastel-pink); 
+            text-shadow: 0 0 10px var(--pastel-pink);
+            transform: translateY(-2px);
+        }
+
+        /* --- FLOATING GARDEN ANIMATIONS --- */
         body::before {
             content: "🦈";
             position: fixed;
             top: 25%; left: 8%;
             font-size: 6rem;
-            opacity: 0.08; /* Subtler */
+            opacity: 0.08;
             filter: blur(2px);
             animation: float 8s ease-in-out infinite;
             z-index: -1;
         }
 
-        /* 2. A Lavender & A Cute Hacker 🌸 👩‍💻 (on body) */
         body::after {
-            content: "🌸 👩‍💻"; /* Combining them */
+            content: "🌸 👩‍💻";
             position: fixed;
             bottom: 20%; right: 10%;
             font-size: 4rem;
@@ -102,7 +153,6 @@
             z-index: -1;
         }
 
-        /* 3. Bubbles & a Terminal 🫧 🖥️ (on header) */
         header::before {
             content: "🖥️ 🫧";
             position: fixed;
@@ -113,7 +163,6 @@
             z-index: -1;
         }
 
-        /* 4. A Teacup & Another Small Shark 🍵 🦈 (on header) */
         header::after {
             content: "🍵 🦈";
             position: fixed;
@@ -125,25 +174,27 @@
             z-index: -1;
         }
 
-        /* The gentle animation */
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-25px) rotate(8deg); }
         }
-        .nav a { 
-        color: var(--cream); 
-        text-decoration: none; 
-        margin: 0 15px; 
-        font-weight: 300; 
-        font-size: 0.9rem; 
-        transition: 0.3s; 
+
+        @keyframes glitch-hover {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
         }
 
-        /* This makes the tabs glow when you hover over them */
-        .nav a:hover { 
-        color: var(--pastel-pink); 
-        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
-        transform: translateY(-2px);
+        @keyframes glitch-color {
+            0% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
+            20% { transform: translate(-5px, 0); clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%); }
+            40% { transform: translate(5px, 0); clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); }
+            60% { transform: translate(-5px, 0); clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+            80% { transform: translate(5px, 0); clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); }
+            100% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
         }
     </style>
 </head>
