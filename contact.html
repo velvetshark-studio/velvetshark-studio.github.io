@@ -18,7 +18,38 @@
         }
 
         /* --- THE PRETTY FLOATING GARDEN --- */
-        body::before { content: "🌸 🔮 ✨"; position: fixed; top: 10%; left: 5%; font-size: 4rem; opacity: 0.12; animation: float 10s infinite; z-index: -1; }
+            /* --- CONTACT SECTION EMOJI POSITIONING --- */
+
+/* Candy/Flower (Left) - Original horizontal, lowered vertical */
+header::after { 
+    content: "🍬 ✨"; 
+    position: fixed; 
+    top: 40%; /* Lowered from original position */
+    left: 15%; 
+    font-size: 3.5rem; 
+    opacity: 0.1; 
+    animation: float 11s infinite reverse; 
+    z-index: -1; 
+}
+
+/* Middle Emoji Group (if applicable to your floating garden) */
+/* If you are using a third grouping for the middle 🔮 */
+.contact-middle-emojis {
+    top: 45%; 
+    left: 45%;
+}
+
+/* Tulip/Bubble (Right) - Original horizontal, lowered vertical */
+        header::before { 
+        content: "🌷 🫧"; 
+        position: fixed; 
+        top: 42%; /* Lowered to keep it clear of the bar */
+        right: 12%; 
+        font-size: 3rem; 
+        opacity: 0.08; 
+        animation: float 9s infinite; 
+        z-index: -1; 
+        }
         body::after { content: "🦈 🫧 💠"; position: fixed; bottom: 15%; right: 5%; font-size: 4.5rem; opacity: 0.1; animation: float 7s infinite reverse; z-index: -1; }
         
         header::before { content: "🌷 🫧"; position: fixed; top: 40%; right: 12%; font-size: 3rem; opacity: 0.08; animation: float 9s infinite; z-index: -1; }
