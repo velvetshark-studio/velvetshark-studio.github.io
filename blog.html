@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | Velvet Shark Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=DotGothic16&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --deep-purple: #2D1B4D;
@@ -13,6 +13,7 @@
             --soft-blue: #AEC6CF;
             --cream: #FFFDD0;
             --glass: rgba(255, 255, 255, 0.1);
+            --highlight-orange: #FF5A2E;
         }
 
         body {
@@ -24,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* --- CUTE STUFF: Background Sharks --- */
+        /* --- BACKGROUND DECORATIONS --- */
         body::before {
             content: "🦈";
             position: fixed;
@@ -33,6 +34,7 @@
             opacity: 0.1;
             filter: blur(2px);
             animation: float 6s ease-in-out infinite;
+            z-index: -1;
         }
 
         body::after {
@@ -42,6 +44,7 @@
             font-size: 4rem;
             opacity: 0.15;
             animation: float 4s ease-in-out infinite reverse;
+            z-index: -1;
         }
 
         @keyframes float {
@@ -57,16 +60,72 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; }
-        .nav a:hover { color: var(--pastel-pink); text-decoration: underline; }
-        .nav a.active {
-        color: var(--pastel-pink);
-        border-bottom: 2px solid var(--pastel-pink);
-        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+        /* --- PIXELATED GLITCH TITLE --- */
+        h1 { 
+            font-family: 'DotGothic16', sans-serif;
+            font-weight: normal;
+            font-size: 3.2rem;
+            letter-spacing: 6px;
+            color: var(--pastel-pink);
+            margin: 0 0 1rem 0; 
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 15px var(--lavender);
+            animation: text-flicker 4s infinite;
         }
+
+        h1::before, h1::after {
+            content: "VELVET SHARK STUDIO";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.7;
+            filter: blur(0.5px);
+        }
+
+        h1::before { color: #00fff9; z-index: -1; animation: glitch-drift 0.9s infinite alternate-reverse; }
+        h1::after { color: #ff00c1; z-index: -1; animation: glitch-drift 1.1s infinite alternate; }
+
+        @keyframes text-flicker {
+            0%, 92%, 94%, 99%, 100% { opacity: 1; color: var(--pastel-pink); }
+            93% { opacity: 0.8; color: var(--highlight-orange); }
+        }
+
+        @keyframes glitch-drift {
+            0% { transform: translate(2px, -1px); clip-path: inset(10% 0 80% 0); }
+            20% { transform: translate(-2px, 1px); clip-path: inset(30% 0 20% 0); }
+            40% { transform: translate(1px, -1px); clip-path: inset(50% 0 45% 0); }
+            100% { transform: translate(-2px, -1px); clip-path: inset(0% 0 90% 0); }
+        }
+
+        /* --- NAVIGATION TABS --- */
+        .nav a { 
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--cream); 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: 500; 
+            font-size: 1.1rem; 
+            transition: 0.3s; 
+            display: inline-block;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav a.active {
+            color: var(--pastel-pink);
+            border-bottom: 2px solid var(--pastel-pink);
+            text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+        }
+
+        .nav a:hover { 
+            color: var(--pastel-pink); 
+            text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+            transform: translateY(-2px);
+        }
+
+        /* --- BLOG SECTION --- */
         .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
 
-        /* Blog Post Cards */
         .blog-card {
             background: var(--glass);
             backdrop-filter: blur(15px);
@@ -80,26 +139,16 @@
             transition: 0.3s;
         }
 
-        .blog-card:hover { background: rgba(255,255,255,0.15); cursor: pointer; }
-
-        .date { font-size: 0.8rem; color: var(--soft-blue); font-family: 'JetBrains Mono'; }
-        h2 { margin: 0; color: var(--pastel-pink); font-size: 1.2rem; }
-
-        .nav a { 
-        color: var(--cream); 
-        text-decoration: none; 
-        margin: 0 15px; 
-        font-weight: 300; 
-        font-size: 0.9rem; 
-        transition: 0.3s; 
+        .blog-card:hover { 
+            background: rgba(255,255,255,0.15); 
+            cursor: pointer; 
+            transform: translateX(10px);
         }
 
-        /* This makes the tabs glow when you hover over them */
-        .nav a:hover { 
-        color: var(--pastel-pink); 
-        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
-        transform: translateY(-2px);
-        }
+        .blog-card h2 { margin: 0; color: var(--pastel-pink); font-size: 1.2rem; }
+        .blog-card p { margin: 5px 0 0 0; font-size: 0.9rem; color: var(--cream); opacity: 0.8; }
+        .date { font-size: 0.8rem; color: var(--soft-blue); font-family: 'JetBrains Mono', monospace; }
+
     </style>
 </head>
 <body>
@@ -116,7 +165,7 @@
     </header>
 
     <div class="container">
-        <h2 style="margin-bottom: 20px; color: var(--lavender);">Latest Writeups 📝</h2>
+        <h2 style="margin-bottom: 20px; color: var(--lavender); font-family: 'JetBrains Mono', monospace;">Latest Writeups 📝</h2>
         
         <div class="blog-card">
             <div>
