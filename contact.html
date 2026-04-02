@@ -19,6 +19,17 @@
         }
 
         /* --- THE PRETTY FLOATING GARDEN --- */
+        header::after { 
+        content: "🍬 ✨"; 
+        position: fixed; 
+        top: 60%;           /* Pushed down further to stay in the body area */
+        left: 15%; 
+        font-size: 3.5rem; 
+        opacity: 0.1; 
+        animation: float 11s infinite reverse; 
+        z-index: -1; 
+        }
+        
         body::before { 
             content: "🌸 🔮 ✨"; 
             position: fixed; 
