@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Velvet Shark Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; 
+            --soft-blue: #AEC6CF; --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); 
+        }
+        body { 
+            margin: 0; font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, var(--deep-purple), #4B0082); 
+            color: var(--cream); min-height: 100vh; display: flex; 
+            flex-direction: column; align-items: center; overflow-x: hidden; 
+        }
+
+        /* --- THE PRETTY FLOATING GARDEN --- */
+        body::before { content: "🌸 🔮 ✨"; position: fixed; top: 10%; left: 5%; font-size: 4rem; opacity: 0.12; animation: float 10s infinite; z-index: -1; }
+        body::after { content: "🦈 🫧 💠"; position: fixed; bottom: 15%; right: 5%; font-size: 4.5rem; opacity: 0.1; animation: float 7s infinite reverse; z-index: -1; }
+        
+        header::before { content: "🌷 🫧"; position: fixed; top: 40%; right: 12%; font-size: 3rem; opacity: 0.08; animation: float 9s infinite; z-index: -1; }
+        header::after { content: "🍬 ✨"; position: fixed; bottom: 10%; left: 15%; font-size: 3.5rem; opacity: 0.1; animation: float 11s infinite reverse; z-index: -1; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-30px) rotate(10deg) scale(1.05); }
+        }
+
+        header { width: 100%; padding: 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; font-size: 0.9rem; transition: 0.3s; }
+        .nav a:hover { color: var(--pastel-pink); text-shadow: 0 0 10px var(--pastel-pink); }
+
+        .contact-card { 
+            max-width: 500px; width: 85%; 
+            background: var(--glass); 
+            backdrop-filter: blur(30px); 
+            border-radius: 40px; 
+            padding: 4rem 2rem; 
+            margin-top: 5rem; 
+            border: 1px solid rgba(255,255,255,0.15); 
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+        }
+
+        h2 { font-size: 2rem; color: var(--pastel-pink); margin-bottom: 15px; letter-spacing: 1px; }
+        .intro-text { line-height: 1.6; font-size: 0.95rem; color: var(--lavender); margin-bottom: 40px; }
+
+        .email-box {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--pastel-pink);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .email-box:hover { 
+            background: rgba(255,255,255,0.15); 
+            transform: scale(1.05); 
+            border-color: var(--lavender);
+            box-shadow: 0 0 20px rgba(255, 209, 220, 0.2);
+        }
+
+        .footer-note { margin-top: 40px; font-size: 0.75rem; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VELVET SHARK STUDIO</h1>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+
+    <div class="contact-card">
+        <h2>Drop a Line 🦈</h2>
+        <div class="intro-text">
+            Whether you have a technical question, a project in mind, or just want to say hi, my inbox is always open. I’m currently looking for new challenges in the cyber-world—let's build something sharp together.
+        </div>
+        
+        <a href="mailto:velvetshark.studio@gmail.com" class="email-box">
+            <span>✉️</span> velvetshark.studio@gmail.com
+        </a>
+
+        <div class="footer-note">Est. 2026 • Stay Secure</div>
+    </div>
+
+</body>
+</html>
