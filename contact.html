@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Velvet Shark Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=DotGothic16&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root { 
             --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; 
             --soft-blue: #AEC6CF; --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); 
+            --highlight-orange: #FF5A2E;
         }
         body { 
             margin: 0; font-family: 'Poppins', sans-serif; 
@@ -18,58 +19,25 @@
         }
 
         /* --- THE PRETTY FLOATING GARDEN --- */
-/* --- THE PRETTY FLOATING GARDEN --- */
+        body::before { 
+            content: "🌸 🔮 ✨"; 
+            position: fixed; 
+            top: 30%; left: 5%; 
+            font-size: 4rem; 
+            opacity: 0.12; 
+            animation: float 10s infinite; 
+            z-index: -1; 
+        }
 
-/* 1. The Missing Group (🌸 🔮 ✨) - Lowered to 25% to clear the header */
-body::before { 
-    content: "🌸 🔮 ✨"; 
-    position: fixed; 
-    top: 38%;           /* Changed from 10% to 25% to push it down */
-    left: 5%; 
-    font-size: 4rem; 
-    opacity: 0.12; 
-    animation: float 10s infinite; 
-    z-index: -1; 
-}
-
-/* 2. The Bottom Group (🦈 🫧 💠) */
-body::after { 
-    content: "🦈 🫧 💠"; 
-    position: fixed; 
-    bottom: 15%; 
-    right: 5%; 
-    font-size: 4.5rem; 
-    opacity: 0.1; 
-    animation: float 7s infinite reverse; 
-    z-index: -1; 
-}
-
-/* 3. The Right Side Group (🌷 🫧) - Lowered to 45% */
-header::before { 
-    content: "🌷 🫧"; 
-    position: fixed; 
-    top: 45%;           /* Lowered to clear the navigation bar */
-    right: 12%; 
-    font-size: 3rem; 
-    opacity: 0.08; 
-    animation: float 9s infinite; 
-    z-index: -1; 
-}
-
-/* 4. The Left Side Group (🍬 ✨) - Lowered to 60% */
-header::after { 
-    content: "🍬 ✨"; 
-    position: fixed; 
-    top: 60%;           /* Pushed down further to stay in the body area */
-    left: 15%; 
-    font-size: 3.5rem; 
-    opacity: 0.1; 
-    animation: float 11s infinite reverse; 
-    z-index: -1; 
-}
-        
-        header::before { content: "🌷 🫧"; position: fixed; top: 40%; right: 12%; font-size: 3rem; opacity: 0.08; animation: float 9s infinite; z-index: -1; }
-        header::after { content: "🍬 ✨"; position: fixed; bottom: 10%; left: 15%; font-size: 3.5rem; opacity: 0.1; animation: float 11s infinite reverse; z-index: -1; }
+        body::after { 
+            content: "🦈 🫧 💠"; 
+            position: fixed; 
+            bottom: 15%; right: 5%; 
+            font-size: 4.5rem; 
+            opacity: 0.1; 
+            animation: float 7s infinite reverse; 
+            z-index: -1; 
+        }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
@@ -77,20 +45,78 @@ header::after {
         }
 
         header { width: 100%; padding: 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; font-size: 0.9rem; transition: 0.3s; }
-        .nav a:hover { color: var(--pastel-pink); text-shadow: 0 0 10px var(--pastel-pink); }
-        .nav a.active {
-        color: var(--pastel-pink);
-        border-bottom: 2px solid var(--pastel-pink);
-        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+
+        /* --- THE PIXELATED GLITCH TITLE --- */
+        h1 { 
+            font-family: 'DotGothic16', sans-serif;
+            font-weight: normal;
+            font-size: 3.2rem;
+            letter-spacing: 6px;
+            color: var(--pastel-pink);
+            margin: 0 0 1rem 0; 
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 15px var(--lavender);
+            animation: text-flicker 4s infinite;
         }
+
+        h1::before, h1::after {
+            content: "VELVET SHARK STUDIO";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.7;
+            filter: blur(0.5px);
+        }
+
+        h1::before { color: #00fff9; z-index: -1; animation: glitch-drift 0.9s infinite alternate-reverse; }
+        h1::after { color: #ff00c1; z-index: -1; animation: glitch-drift 1.1s infinite alternate; }
+
+        @keyframes text-flicker {
+            0%, 92%, 94%, 99%, 100% { opacity: 1; color: var(--pastel-pink); }
+            93% { opacity: 0.8; color: var(--highlight-orange); }
+        }
+
+        @keyframes glitch-drift {
+            0% { transform: translate(2px, -1px); clip-path: inset(10% 0 80% 0); }
+            20% { transform: translate(-2px, 1px); clip-path: inset(30% 0 20% 0); }
+            40% { transform: translate(1px, -1px); clip-path: inset(50% 0 45% 0); }
+            100% { transform: translate(-2px, -1px); clip-path: inset(0% 0 90% 0); }
+        }
+
+        /* --- NAVIGATION TABS --- */
+        .nav a { 
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--cream); 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: 500; 
+            font-size: 1.1rem; 
+            transition: 0.3s; 
+            display: inline-block;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav a.active {
+            color: var(--pastel-pink);
+            border-bottom: 2px solid var(--pastel-pink);
+            text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+        }
+
+        .nav a:hover { 
+            color: var(--pastel-pink); 
+            text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+            transform: translateY(-2px);
+        }
+
+        /* --- CONTACT CARD --- */
         .contact-card { 
             max-width: 500px; width: 85%; 
             background: var(--glass); 
             backdrop-filter: blur(30px); 
             border-radius: 40px; 
             padding: 4rem 2rem; 
-            margin-top: 5rem; 
+            margin-top: 3rem; 
             border: 1px solid rgba(255,255,255,0.15); 
             text-align: center;
             box-shadow: 0 25px 60px rgba(0,0,0,0.4);
@@ -121,7 +147,7 @@ header::after {
             box-shadow: 0 0 20px rgba(255, 209, 220, 0.2);
         }
 
-        .footer-note { margin-top: 40px; font-size: 0.75rem; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; }
+        .footer-note { margin-top: 40px; font-size: 0.75rem; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
 <body>
