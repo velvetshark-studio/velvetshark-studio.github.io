@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Sharks Studio | Cyber Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-purple: #2D1B4D;
+            --lavender: #E6E6FA;
+            --pastel-pink: #FFD1DC;
+            --soft-blue: #AEC6CF;
+            --cream: #FFFDD0;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--deep-purple), #4B0082);
+            color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h1 { font-weight: 600; letter-spacing: 2px; color: var(--pastel-pink); margin: 0; }
+        .tagline { font-style: italic; color: var(--soft-blue); margin-top: 5px; }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            padding: 2rem;
+            width: 90%;
+        }
+
+        /* Rounded Glass Cards */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        /* Terminal Style Snippets */
+        .terminal {
+            background: #1a1a1a;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 1rem;
+            border-radius: 10px;
+            color: #00ff00;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--pastel-pink);
+        }
+
+        h2 { color: var(--lavender); border-bottom: 1px solid var(--glass); padding-bottom: 10px; }
+        
+        .nav { margin-top: 20px; }
+        .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; }
+        .nav a:hover { color: var(--pastel-pink); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VELVET SHARKS STUDIO</h1>
+        <div class="tagline">Soft aesthetic. Sharp instincts.</div>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">Blog</a>
+            <a href="#">Projects</a>
+            <a href="#">About</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Welcome to the Studio 🦈</h2>
+            <p>Welcome to my personal cybersecurity journey. This space combines my love for soft, creative design with the technical edge of penetration testing and forensics.</p>
+            <div class="terminal">
+                $ whoami <br>
+                > velvetshark <br>
+                $ status <br>
+                > building_something_awesome...
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Latest CTF Writeup</h2>
+            <p>Coming soon: My walkthrough for the <strong>Voyager</strong> box on HackTheBox.</p>
+        </div>
+    </div>
+
+</body>
+</html>
