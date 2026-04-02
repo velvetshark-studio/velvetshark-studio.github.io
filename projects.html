@@ -21,6 +21,26 @@
         .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; }
         .nav a:hover { color: var(--pastel-pink); }
 
+.nav a { 
+    /* This applies the technical pixel font from your main title to the nav tabs */
+    font-family: 'DotGothic16', sans-serif;
+    color: var(--cream); 
+    text-decoration: none; 
+    margin: 0 15px; 
+    font-weight: 300; 
+    font-size: 1.1rem; /* Slightly larger to match the Home aesthetic */
+    transition: 0.3s; 
+    padding-bottom: 5px; 
+    border-bottom: 2px solid transparent; 
+}
+
+.nav a.active {
+    color: var(--pastel-pink);
+    border-bottom: 2px solid var(--pastel-pink);
+    /* Adds the signature glow seen in your Home and Blog sections */
+    text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+}
+        
         .container { max-width: 1000px; margin: 2rem auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         
         .project-card { background: var(--glass); backdrop-filter: blur(15px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
