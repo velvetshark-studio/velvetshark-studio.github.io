@@ -79,7 +79,11 @@ header::after {
         header { width: 100%; padding: 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
         .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; font-size: 0.9rem; transition: 0.3s; }
         .nav a:hover { color: var(--pastel-pink); text-shadow: 0 0 10px var(--pastel-pink); }
-
+        .nav a.active {
+        color: var(--pastel-pink);
+        border-bottom: 2px solid var(--pastel-pink);
+        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+        }
         .contact-card { 
             max-width: 500px; width: 85%; 
             background: var(--glass); 
@@ -129,7 +133,7 @@ header::after {
             <a href="blog.html">Blog</a>
             <a href="projects.html">Projects</a>
             <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html"> class="active">Contact</a>
         </div>
     </header>
 
