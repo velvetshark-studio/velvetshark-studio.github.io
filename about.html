@@ -6,20 +6,48 @@
     <title>About | Velvet Shark Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        :root { --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); }
+        :root { --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); --peach: #FFDAB9; }
         body { margin: 0; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, var(--deep-purple), #4B0082); color: var(--cream); min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
         
-        /* Floating About Icons */
-        body::before { content: "☕ 🦈"; position: fixed; top: 15%; right: 10%; font-size: 5rem; opacity: 0.1; animation: float 7s infinite; z-index: -1; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
-
         header { width: 100%; padding: 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; }
+        .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; transition: 0.3s; font-weight: 300; }
+        .nav a:hover { color: var(--pastel-pink); text-shadow: 0 0 10px var(--pastel-pink); }
 
         .about-card { max-width: 700px; width: 90%; background: var(--glass); backdrop-filter: blur(20px); border-radius: 30px; padding: 3rem; margin-top: 3rem; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
-        .profile-icon { font-size: 5rem; margin-bottom: 20px; }
-        h2 { color: var(--pastel-pink); }
+        
+        /* THE SLOGAN BOX */
+        .slogan-box {
+            background: linear-gradient(45deg, var(--pastel-pink), var(--peach));
+            color: var(--deep-purple);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            font-weight: 600;
+            font-style: italic;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            border: none;
+        }
+        .slogan-box::before { content: "✧"; position: absolute; top: 10px; left: 15px; font-size: 1.2rem; }
+        .slogan-box::after { content: "✧"; position: absolute; bottom: 10px; right: 15px; font-size: 1.2rem; }
+
         .skill-badge { display: inline-block; border: 1px solid var(--lavender); padding: 5px 15px; border-radius: 20px; margin: 5px; font-size: 0.8rem; }
+
+        .nav a { 
+        color: var(--cream); 
+        text-decoration: none; 
+        margin: 0 15px; 
+        font-weight: 300; 
+        font-size: 0.9rem; 
+        transition: 0.3s; 
+        }
+
+/* This makes the tabs glow when you hover over them */
+       .nav a:hover { 
+       color: var(--pastel-pink); 
+       text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+       transform: translateY(-2px);
+       }
     </style>
 </head>
 <body>
@@ -35,17 +63,20 @@
     </header>
 
     <div class="about-card">
-        <div class="profile-icon">🦈</div>
+        <div style="font-size: 4rem; margin-bottom: 10px;">🦈</div>
         <h2>Who is Velvet Shark?</h2>
+        
+        <div class="slogan-box">
+            "Jack of all cards, master of none, but oftentimes better than a master of one" 🪷 ✨
+        </div>
+
         <p>I am a cybersecurity enthusiast and a creative explorer. I believe that technical work doesn't have to be cold and dark—it can be soft, colorful, and inviting.</p>
-        <p>I specialize in finding sharp solutions while maintaining a calm, focused aesthetic. Currently learning penetration testing, forensics, and the art of the perfect Linux rice.</p>
         
         <h3 style="color: var(--lavender); margin-top: 30px;">Current Skills</h3>
         <div class="skill-badge">Nmap</div>
         <div class="skill-badge">Python</div>
         <div class="skill-badge">Forensics</div>
         <div class="skill-badge">Linux Customization</div>
-        <div class="skill-badge">Cryptography</div>
     </div>
 </body>
 </html>
