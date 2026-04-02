@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Prevents all scrolling */
+            overflow: hidden; 
             font-family: 'Poppins', sans-serif;
             background: #1a0b2e;
             background: radial-gradient(circle at center, #2e0052 0%, var(--deep-purple) 100%);
@@ -39,11 +39,11 @@
             pointer-events: none;
         }
 
-        /* --- STICKY FLEX HEADER --- */
+        /* --- STRENGTHENED HEADER --- */
         header {
-            flex: 0 1 auto;
+            flex: 0 0 auto; /* DO NOT SHRINK, DO NOT GROW */
             width: 100%;
-            padding: 1.5vh 0; /* Responsive vertical padding */
+            padding: 3vh 0; 
             text-align: center;
             background: rgba(45, 27, 77, 0.4);
             backdrop-filter: blur(8px);
@@ -53,7 +53,7 @@
 
         h1 { 
             font-family: 'DotGothic16', sans-serif;
-            font-size: clamp(1.5rem, 6vh, 3.2rem); /* Dynamic resizing */
+            font-size: clamp(2rem, 8vh, 3.2rem); /* Increased minimum size */
             letter-spacing: 4px;
             color: var(--pastel-pink);
             margin: 0; 
@@ -63,14 +63,14 @@
             text-shadow: 0 0 15px var(--lavender);
         }
 
-        .tagline { font-style: italic; color: var(--soft-blue); margin-top: 0.5vh; font-size: clamp(0.7rem, 2vh, 0.95rem); }
+        .tagline { font-style: italic; color: var(--soft-blue); margin-top: 1vh; font-size: clamp(0.8rem, 2.2vh, 1rem); }
 
-        .nav { margin-top: 1vh; display: flex; justify-content: center; gap: 15px; }
+        .nav { margin-top: 2vh; display: flex; justify-content: center; gap: 20px; }
         .nav a { 
             color: var(--cream); 
             text-decoration: none; 
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.7rem, 1.8vh, 1rem);
+            font-size: clamp(0.85rem, 2vh, 1.1rem);
             transition: 0.3s;
         }
 
@@ -84,33 +84,35 @@
             justify-content: center;
             padding: 2vh;
             z-index: 10;
+            min-height: 0; /* Important for flex child scrolling/containment */
         }
 
         .card {
             background: var(--glass);
             backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: 3vh 2.5rem;
+            padding: 4vh 2.5rem;
             border: 1px solid rgba(255,255,255,0.1);
             max-width: 800px;
             width: 100%;
+            max-height: 90%; /* Keeps card within the flex area */
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        h2 { font-size: clamp(1.2rem, 3.5vh, 2rem); margin-bottom: 1vh; margin-top: 0; color: var(--lavender); }
-        p { font-size: clamp(0.8rem, 2vh, 1rem); margin-bottom: 2vh; line-height: 1.4; }
+        h2 { font-size: clamp(1.4rem, 4vh, 2.2rem); margin-bottom: 1.5vh; margin-top: 0; color: var(--lavender); }
+        p { font-size: clamp(0.9rem, 2.2vh, 1.1rem); margin-bottom: 2.5vh; line-height: 1.5; }
 
         .terminal {
             background: #121212;
             font-family: 'JetBrains Mono', monospace;
-            padding: 2vh;
+            padding: 2.5vh;
             border-radius: 12px;
             color: #00ff00;
             border-left: 4px solid var(--pastel-pink);
-            line-height: 1.5;
-            font-size: clamp(0.7rem, 1.8vh, 0.9rem);
+            line-height: 1.6;
+            font-size: clamp(0.75rem, 1.9vh, 1rem);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             word-break: break-all;
         }
@@ -127,8 +129,9 @@
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         @media (max-width: 600px) {
-            .card { padding: 2vh 1.5rem; }
-            .nav { gap: 8px; }
+            header { padding: 4vh 0; }
+            .card { padding: 3vh 1.5rem; width: 95%; }
+            .nav { gap: 10px; }
         }
     </style>
 </head>
@@ -213,7 +216,7 @@
                     const dx = p.x - particles[j].x;
                     const dy = p.y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) { // Slightly shorter distance for cleaner mobile look
+                    if (dist < 120) { 
                         ctx.strokeStyle = p.color;
                         ctx.lineWidth = 0.3;
                         ctx.globalAlpha = 1 - (dist / 120);
