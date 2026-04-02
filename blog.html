@@ -80,6 +80,22 @@
 
         .date { font-size: 0.8rem; color: var(--soft-blue); font-family: 'JetBrains Mono'; }
         h2 { margin: 0; color: var(--pastel-pink); font-size: 1.2rem; }
+
+        .nav a { 
+        color: var(--cream); 
+        text-decoration: none; 
+        margin: 0 15px; 
+        font-weight: 300; 
+        font-size: 0.9rem; 
+        transition: 0.3s; 
+        }
+
+        /* This makes the tabs glow when you hover over them */
+        .nav a:hover { 
+        color: var(--pastel-pink); 
+        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+        transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
