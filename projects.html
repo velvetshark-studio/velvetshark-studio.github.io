@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Velvet Shark Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC;
+            --soft-blue: #AEC6CF; --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1);
+        }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, var(--deep-purple), #4B0082); color: var(--cream); min-height: 100vh; overflow-x: hidden; }
+        
+        /* Floating Icons */
+        body::before { content: "🛠️ 🦈"; position: fixed; top: 20%; left: 5%; font-size: 5rem; opacity: 0.1; animation: float 6s infinite; z-index: -1; }
+        body::after { content: "💻 🌸"; position: fixed; bottom: 10%; right: 5%; font-size: 4rem; opacity: 0.1; animation: float 5s infinite reverse; z-index: -1; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        header { padding: 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav a { color: var(--cream); text-decoration: none; margin: 0 15px; font-weight: 300; }
+        .nav a:hover { color: var(--pastel-pink); }
+
+        .container { max-width: 1000px; margin: 2rem auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        
+        .project-card { background: var(--glass); backdrop-filter: blur(15px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .project-card:hover { transform: scale(1.02); background: rgba(255,255,255,0.15); }
+        
+        .tag { display: inline-block; background: var(--pastel-pink); color: var(--deep-purple); padding: 2px 10px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; margin-bottom: 10px; }
+        h2 { color: var(--lavender); margin: 0 0 10px 0; }
+        .links { margin-top: 15px; font-family: 'JetBrains Mono'; font-size: 0.8rem; }
+        .links a { color: var(--soft-blue); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VELVET SHARK STUDIO</h1>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="project-card">
+            <span class="tag">LINUX RICING</span>
+            <h2>Parrot OS Glow</h2>
+            <p>A custom desktop environment setup using Cairo-Dock and Plank for a sleek hacker aesthetic.</p>
+            <div class="links"><a href="#">View on GitHub →</a></div>
+        </div>
+
+        <div class="project-card">
+            <span class="tag">PYTHON</span>
+            <h2>Base64 Decoder</h2>
+            <p>A simple script to automate the decoding of hidden messages found during CTF challenges.</p>
+            <div class="links"><a href="#">View Code →</a></div>
+        </div>
+
+        <div class="project-card">
+            <span class="tag">FORENSICS</span>
+            <h2>Event Log Parser</h2>
+            <p>A tool to quickly identify system shutdowns and unauthorized logons in .evtx files.</p>
+            <div class="links"><a href="#">Case Study →</a></div>
+        </div>
+    </div>
+</body>
+</html>
