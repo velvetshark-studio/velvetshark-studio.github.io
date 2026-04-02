@@ -49,6 +49,16 @@
             animation: float 7s infinite reverse; 
             z-index: -1; 
         }
+        header::before { 
+        content: "🌷 🫧"; 
+        position: fixed; 
+        top: 45%;           /* Lowered to clear the navigation bar */
+        right: 12%; 
+        font-size: 3rem; 
+        opacity: 0.08; 
+        animation: float 9s infinite; 
+        z-index: -1; 
+        }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
