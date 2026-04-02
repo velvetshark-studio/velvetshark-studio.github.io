@@ -13,18 +13,31 @@
             --soft-blue: #AEC6CF;
             --cream: #FFFDD0;
             --glass: rgba(255, 255, 255, 0.1);
-            --highlight-neon-blue: #1F51FF; /* The orange from your reference image */
+            --highlight-orange: #FF5A2E;
         }
 
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
+            /* Radial gradient makes the center pulse more visible */
             background: radial-gradient(circle at center, #4B0082 0%, var(--deep-purple) 100%);
             color: var(--cream);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow: hidden; /* Prevents scrollbars from the canvas */
+        }
+
+        /* --- THE PULSE CANVAS --- */
+        #canvas-web {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4; /* Soft transparency */
         }
 
         header {
@@ -36,7 +49,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* --- PERMANENT GLITCH TITLE (NO RED) --- */
         h1 { 
             font-family: 'DotGothic16', sans-serif;
             font-weight: normal;
@@ -47,56 +59,51 @@
             text-transform: uppercase;
             position: relative;
             text-shadow: 0 0 15px var(--lavender);
-            /* Constant soft flicker */
             animation: text-flicker 4s infinite;
         }
 
-        /* Glitch layers: Always active and no red */
         h1::before, h1::after {
             content: "VELVET SHARK STUDIO";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             opacity: 0.7;
             filter: blur(0.5px);
         }
 
-        h1::before {
-            color: #00fff9; /* Cyan glitch layer */
-            z-index: -1;
-            animation: glitch-drift 0.9s infinite alternate-reverse;
-        }
+        h1::before { color: #00fff9; z-index: -1; animation: glitch-drift 0.9s infinite alternate-reverse; }
+        h1::after { color: #ff00c1; z-index: -1; animation: glitch-drift 1.1s infinite alternate; }
 
-        h1::after {
-            color: #ff00c1; /* Magenta glitch layer */
-            z-index: -1;
-            animation: glitch-drift 1.1s infinite alternate;
-        }
-
-        /* Subtle flicker that blips to orange briefly */
         @keyframes text-flicker {
             0%, 92%, 94%, 99%, 100% { opacity: 1; color: var(--pastel-pink); }
             93% { opacity: 0.8; color: var(--highlight-orange); }
         }
 
-        /* The blocky distortion effect */
         @keyframes glitch-drift {
             0% { transform: translate(2px, -1px); clip-path: inset(10% 0 80% 0); }
-            20% { transform: translate(-2px, 1px); clip-path: inset(30% 0 20% 0); }
-            40% { transform: translate(1px, -1px); clip-path: inset(50% 0 45% 0); }
-            60% { transform: translate(-1px, 2px); clip-path: inset(80% 0 5% 0); }
-            80% { transform: translate(2px, 1px); clip-path: inset(20% 0 60% 0); }
             100% { transform: translate(-2px, -1px); clip-path: inset(0% 0 90% 0); }
         }
 
         .tagline { font-style: italic; color: var(--soft-blue); margin-top: 5px; }
 
+        .nav a { 
+            color: var(--cream); 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-family: 'JetBrains Mono', monospace;
+            transition: 0.3s;
+        }
+
+        .nav a.active {
+            color: var(--pastel-pink);
+            border-bottom: 2px solid var(--pastel-pink);
+            text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+        }
+
         .container {
             max-width: 900px;
             padding: 2rem;
             width: 90%;
+            margin-top: 2rem;
         }
 
         .card {
@@ -104,7 +111,6 @@
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 2rem;
-            margin-bottom: 2rem;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
@@ -117,26 +123,26 @@
             color: #00ff00;
             font-size: 0.9rem;
             border-left: 4px solid var(--pastel-pink);
+            position: relative;
         }
 
-        .nav a { 
-            color: var(--cream); 
-            text-decoration: none; 
-            margin: 0 15px; 
-            font-family: 'JetBrains Mono', monospace;
-            transition: 0.3s;
+        /* Blinking Cursor for the Terminal */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background: #00ff00;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
         }
 
-        .nav a.active {
-        color: var(--pastel-pink);
-        border-bottom: 2px solid var(--pastel-pink);
-        text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
-    }
-        
-        .nav a:hover { color: var(--pastel-pink); text-shadow: 0 0 10px var(--pastel-pink); }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     </style>
 </head>
 <body>
+
+    <canvas id="canvas-web"></canvas>
 
     <header>
         <h1>VELVET SHARK STUDIO</h1>
@@ -151,17 +157,91 @@
     </header>
 
     <div class="container">
-        <div class="card" style="padding: 2rem;">
-            <h2 style="color: var(--lavender);">System Initialized 🦈</h2>
+        <div class="card">
+            <h2 style="color: var(--lavender); margin-top: 0;">System Initialized 🦈</h2>
             <p>This is where my obsession with clean, thoughtful design crashes head-first into the world of penetration testing and forensics. I’m a security researcher who believes a well-built exploit is just as much an art form as a well-placed pixel.</p>
             <div class="terminal">
                 $ whoami <br>
                 > velvetshark <br>
                 $ status <br>
-                > building_something_awesome...
+                > building_something_awesome...<span class="cursor"></span>
             </div>
         </div>
     </div>
 
+    <script>
+        const canvas = document.getElementById('canvas-web');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const colors = ['#E6E6FA', '#FFD1DC', '#AEC6CF']; 
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.5;
+                // Autonomous movement speeds
+                this.speedX = Math.random() * 0.4 - 0.2; 
+                this.speedY = Math.random() * 0.4 - 0.2;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < 90; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                for (let j = index + 1; j < particles.length; j++) {
+                    const dx = p.x - particles[j].x;
+                    const dy = p.y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 150) {
+                        ctx.strokeStyle = p.color;
+                        ctx.lineWidth = 0.15;
+                        ctx.globalAlpha = 1 - (distance / 150); // Lines fade out with distance
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
