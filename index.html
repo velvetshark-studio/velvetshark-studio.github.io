@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velvet Shark Studio | Cyber Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Syne+Mono&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=DotGothic16&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
             --deep-purple: #2D1B4D;
@@ -13,7 +13,8 @@
             --soft-blue: #AEC6CF;
             --cream: #FFFDD0;
             --glass: rgba(255, 255, 255, 0.1);
-            --cyber-orange: #FF4500; /* Color inspired by your reference */
+            /* Removed harsh red, added specific orange highlight from reference */
+            --highlight-orange: #FF5A2E; 
         }
 
         body {
@@ -36,26 +37,38 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* --- UPDATED CYBER GLITCH TITLE --- */
+        /* --- THE FIXED "PRETTY GLITCH" TITLE --- */
         h1 { 
-            font-family: 'Syne Mono', monospace;
-            font-weight: 600; 
-            font-size: 2.8rem;
-            letter-spacing: 5px; 
-            color: var(--cyber-orange); 
+            /* 2. APPLY THE FONT */
+            font-family: 'DotGothic16', sans-serif;
+            font-weight: normal; /* This font looks better normal than bold */
+            font-size: 3.2rem; /* Sized up to feel impactful like the image */
+            letter-spacing: 6px; /* High spacing like your reference */
+            color: var(--pastel-pink); /* Clean pink by default */
             margin: 0; 
-            position: relative;
             text-transform: uppercase;
-            transition: 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s ease-out;
+            /* Subtler default glow */
+            text-shadow: 0 0 10px var(--lavender);
         }
 
+        /* Interactivity on hover (Replaces ugly red with orange/pink) */
         h1:hover {
             color: var(--pastel-pink);
-            text-shadow: 0 0 15px var(--pastel-pink);
-            animation: glitch-hover 0.5s infinite;
+            text-shadow: 0 0 20px var(--lavender);
+            animation: text-flicker 0.4s infinite alternate;
         }
 
-        /* Glitch Layers */
+        /* Keyframes for soft, aesthetic flicker */
+        @keyframes text-flicker {
+            0% { opacity: 0.8; color: var(--pastel-pink); }
+            50% { opacity: 1; color: var(--highlight-orange); } /* Soft orange spike */
+            100% { opacity: 0.9; color: var(--pastel-pink); }
+        }
+
+        /* Re-enabling the Glitch Layers, but with soft colors, only on hover */
         h1::before, h1::after {
             content: "VELVET SHARK STUDIO";
             position: absolute;
@@ -64,20 +77,32 @@
             width: 100%;
             height: 100%;
             opacity: 0;
+            filter: blur(0.5px);
         }
 
         h1:hover::before {
-            opacity: 1;
-            color: #ff00c1;
+            opacity: 0.8;
+            color: #00fff9; /* Soft Cyan */
             z-index: -1;
-            animation: glitch-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            transform: translate(-3px);
+            animation: glitch-drift 0.5s infinite alternate-reverse;
         }
 
         h1:hover::after {
-            opacity: 1;
-            color: #00fff9;
+            opacity: 0.8;
+            color: #ff00c1; /* Soft Magenta */
             z-index: -1;
-            animation: glitch-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+            transform: translate(3px);
+            animation: glitch-drift 0.5s infinite alternate;
+        }
+
+        @keyframes glitch-drift {
+            0% { transform: translate(0, 0); clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
+            20% { transform: translate(-3px, 1px); clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%); }
+            40% { transform: translate(3px, -1px); clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); }
+            60% { transform: translate(-3px, -1px); clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+            80% { transform: translate(3px, 1px); clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); }
+            100% { transform: translate(0, 0); clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
         }
 
         .tagline { font-style: italic; color: var(--soft-blue); margin-top: 5px; }
@@ -178,24 +203,6 @@
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-25px) rotate(8deg); }
         }
-
-        @keyframes glitch-hover {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        @keyframes glitch-color {
-            0% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
-            20% { transform: translate(-5px, 0); clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%); }
-            40% { transform: translate(5px, 0); clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); }
-            60% { transform: translate(-5px, 0); clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
-            80% { transform: translate(5px, 0); clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); }
-            100% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
-        }
     </style>
 </head>
 <body>
@@ -225,7 +232,7 @@
 
         <div class="card">
             <h2>Latest CTF Writeup</h2>
-            <p>Coming soon: My walkthrough for the <strong>Voyager</strong> box on HackTheBox.</p>
+            <p>Coming soon: My walkthrough for the Voyager box on HackTheBox.</p>
         </div>
     </div>
 
