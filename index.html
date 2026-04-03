@@ -154,13 +154,35 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* MOBILE FIXES */
-        @media (max-width: 600px) {
-            header { min-height: 25vh; padding: 2vh 0; }
-            .card { padding: 4vh 1.5rem; width: 90%; }
-            .nav { gap: 12px; }
-            h1 { letter-spacing: 2px; }
-        }
+/* MOBILE FIX: Resolves overlap and scaling issues */
+@media (max-width: 600px) {
+    header { 
+        min-height: auto; /* Allows header to size to content */
+        padding: 20px 0; 
+    }
+    
+    h1 { 
+        font-size: 1.8rem; /* Prevents title from being too massive */
+        letter-spacing: 2px; 
+    }
+
+    .main-wrapper {
+        padding: 10px;
+        align-items: flex-start; /* Prevents centering clash on short screens */
+    }
+
+    .card { 
+        padding: 20px 1.5rem; 
+        width: 90%; 
+        max-height: none; /* Allows card to breathe */
+    }
+
+    .nav { 
+        flex-wrap: wrap; /* Prevents nav links from jumping out of bounds */
+        gap: 10px; 
+        padding: 0 10px;
+    }
+}
     </style>
 </head>
 <body>
