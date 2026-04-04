@@ -22,7 +22,7 @@
             flex-direction: column; align-items: center; overflow-x: hidden; 
         }
 
-        header { width: 100%; padding: 2rem; text-align: center; background: rgba(10, 15, 30, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 255, 159, 0.1); }
+        header { width: 100%; padding: 2rem; text-align: center; background: rgba(10, 15, 30, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 255, 159, 0.1); z-index: 10; }
 
         /* --- PULSING GLITCH TITLE --- */
         h1 { 
@@ -76,8 +76,9 @@
         .contact-card { 
             max-width: 550px; width: 85%; 
             background: var(--glass); backdrop-filter: blur(30px); 
-            border-radius: 40px; padding: 4rem 2rem; margin-top: 3rem; 
+            border-radius: 40px; padding: 4rem 2rem; margin: 3rem 0; 
             border: 1px solid rgba(0, 255, 159, 0.2); text-align: center;
+            z-index: 5;
         }
 
         h2 { font-family: 'Poppins', sans-serif; font-size: 2rem; color: var(--pastel-pink); margin-bottom: 15px; }
@@ -100,15 +101,38 @@
             border-color: var(--lavender); box-shadow: 0 0 15px rgba(0, 255, 159, 0.2);
         }
 
-        /* --- OCEAN FLOATING ELEMENTS --- */
-        .ocean-bg { position: fixed; z-index: -1; opacity: 0.15; pointer-events: none; font-size: 4rem; animation: float 8s infinite ease-in-out; }
-        .o1 { top: 20%; left: 10%; }
-        .o2 { bottom: 20%; right: 10%; animation-delay: 2s; }
+        /* --- UPDATED OCEAN BACKGROUND GARDEN --- */
+        .ocean-bg { 
+            position: fixed; 
+            z-index: -1; 
+            opacity: 0.12; 
+            pointer-events: none; 
+            user-select: none;
+            animation: float 10s infinite ease-in-out; 
+        }
+
+        /* Positioning the variety of life */
+        .o1 { top: 15%; left: 5%; font-size: 4.5rem; animation-duration: 9s; }  /* Jellyfish */
+        .o2 { bottom: 10%; right: 8%; font-size: 5rem; animation-duration: 11s; } /* Coral */
+        .o3 { top: 40%; right: 15%; font-size: 3rem; animation-duration: 7s; }  /* Fish */
+        .o4 { bottom: 35%; left: 12%; font-size: 3.5rem; animation-duration: 13s; } /* Shell */
+        .o5 { top: 60%; left: 4%; font-size: 2.5rem; animation-duration: 8s; opacity: 0.08; } /* Bubbles */
+        .o6 { bottom: 5%; left: 30%; font-size: 4rem; animation-duration: 15s; } /* Shark */
+        .o7 { top: 25%; right: 30%; font-size: 2rem; animation-duration: 6s; } /* Tropical Fish */
+        .o8 { bottom: 45%; right: 5%; font-size: 3.5rem; animation-duration: 10s; } /* Puffer */
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(8deg); }
         }
+
+        /* Subtle Wave Animation for the Water/Seaweed feel */
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(15px); }
+        }
+
+        .wave-motion { animation: wave 6s infinite ease-in-out; }
     </style>
 </head>
 <body>
@@ -125,7 +149,13 @@
     </header>
 
     <div class="ocean-bg o1">🪼</div>
-    <div class="ocean-bg o2">🪸</div>
+    <div class="ocean-bg o2 wave-motion">🪸</div>
+    <div class="ocean-bg o3">🐠</div>
+    <div class="ocean-bg o4">🐚</div>
+    <div class="ocean-bg o5">🫧</div>
+    <div class="ocean-bg o6">🦈</div>
+    <div class="ocean-bg o7">🐟</div>
+    <div class="ocean-bg o8">🐡</div>
 
     <div class="contact-card">
         <h2>Drop a Line 🦈</h2>
