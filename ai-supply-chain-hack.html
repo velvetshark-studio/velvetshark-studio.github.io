@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Supply Chain Hack | Velvet Shark Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=DotGothic16&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* REUSE ALL THE SAME CSS FROM ABOVE FOR CONSISTENCY */
+        :root { --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; --soft-blue: #AEC6CF; --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); --highlight-orange: #FF5A2E; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: #1a0f2e; color: var(--cream); min-height: 100vh; overflow-x: hidden; position: relative; }
+        .water-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; background: linear-gradient(135deg, var(--deep-purple) 0%, #120a1f 100%); }
+        .caustics { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background-image: radial-gradient(circle at 20% 30%, rgba(174, 198, 207, 0.4) 0%, transparent 25%), radial-gradient(circle at 70% 20%, rgba(255, 209, 220, 0.3) 0%, transparent 25%), radial-gradient(circle at 40% 80%, rgba(230, 230, 250, 0.4) 0%, transparent 30%); background-size: 40% 40%; filter: blur(45px); mix-blend-mode: overlay; animation: water-drift 15s ease-in-out infinite alternate; }
+        @keyframes water-drift { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(10%, 5%) scale(1.1) rotate(2deg); } }
+        header { padding: 2.5rem 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        h1.site-title { font-family: 'DotGothic16', sans-serif; font-size: 3.2rem; letter-spacing: 6px; color: var(--pastel-pink); text-transform: uppercase; position: relative; text-shadow: 0 0 15px var(--lavender); animation: text-flicker 4s infinite; margin:0; }
+        @keyframes text-flicker { 0%, 92%, 94%, 99%, 100% { opacity: 1; color: var(--pastel-pink); } 93% { opacity: 0.8; color: var(--highlight-orange); } }
+        
+        .container { max-width: 800px; margin: 4rem auto; padding: 0 1.5rem; }
+        .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--pastel-pink); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; transition: 0.3s; }
+        .back-btn:hover { color: var(--cream); transform: translateX(-5px); }
+        
+        .article-content { background: var(--glass); backdrop-filter: blur(20px); border-radius: 30px; padding: 3rem; border: 1px solid rgba(255,255,255,0.1); line-height: 1.8; }
+        .article-content h2 { font-family: 'JetBrains Mono', monospace; color: var(--pastel-pink); margin-top: 0; font-size: 1.8rem; }
+        .article-content p { margin-bottom: 1.5rem; font-size: 1.05rem; opacity: 0.9; }
+        blockquote { border-left: 3px solid var(--pastel-pink); padding-left: 20px; margin: 2rem 0; font-style: italic; color: var(--lavender); }
+        
+        .deco-shark { position: fixed; top: 45%; left: 5%; font-size: 5rem; opacity: 0.1; z-index: -1; }
+    </style>
+</head>
+<body>
+    <div class="water-layer"><div class="caustics"></div></div>
+    <header><h1 class="site-title">VELVET SHARK STUDIO</h1></header>
+
+    <div class="container">
+        <a href="blog.html" class="back-btn">← Back to writing</a>
+        
+        <article class="article-content">
+            <h2>The AI Supply Chain Hack That Turned Security Into the Problem</h2>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--soft-blue); margin-bottom: 2rem;">[ DATE: 2026-04-04 | TAG: #AI-SECURITY ]</div>
+            
+            <p>This hack just surfaced recently, and it’s honestly wild. There’s a Python library called <strong>LiteLLM</strong> used by giants like Stripe, Netflix, and Google. If you’re building anything with AI in Python, there’s a good chance it’s somewhere in your stack.</p>
+
+            <blockquote>"Reports suggest the attackers may have compromised Trivy first, which is a security scanning tool used in LiteLLM’s build pipeline."</blockquote>
+
+            <p>A security tool became the attack vector. When the scanner ran, it exposed publishing credentials, letting attackers push malicious updates that appeared legitimate.</p>
+
+            <p><strong>The takeaway?</strong> Pin your dependencies. Use lockfiles. And maybe don’t assume your security tools are always secure.</p>
+        </article>
+    </div>
+
+    <div class="deco-shark">🦈</div>
+</body>
+</html>
