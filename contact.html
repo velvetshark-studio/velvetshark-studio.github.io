@@ -144,9 +144,16 @@
         }
 
         h2 { font-size: 2rem; color: var(--pastel-pink); margin-bottom: 15px; letter-spacing: 1px; }
-        .intro-text { line-height: 1.6; font-size: 0.95rem; color: var(--lavender); margin-bottom: 40px; }
+        .intro-text { line-height: 1.6; font-size: 0.95rem; color: var(--lavender); margin-bottom: 30px; }
 
-        .email-box {
+        .link-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .contact-box {
             background: rgba(255,255,255,0.05);
             padding: 20px;
             border-radius: 20px;
@@ -159,9 +166,11 @@
             gap: 15px;
             border: 1px solid rgba(255,255,255,0.1);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            justify-content: center;
         }
 
-        .email-box:hover { 
+        .contact-box:hover { 
             background: rgba(255,255,255,0.15); 
             transform: scale(1.05); 
             border-color: var(--lavender);
@@ -190,9 +199,15 @@
             Whether you have a technical question, a project in mind, or just want to say hi, my inbox is always open. I’m currently looking for new challenges in the cyber-world—let's build something sharp together.
         </div>
         
-        <a href="mailto:velvetshark.studio@gmail.com" class="email-box">
-            <span>✉️</span> velvetshark.studio@gmail.com
-        </a>
+        <div class="link-group">
+            <a href="mailto:velvetshark.studio@gmail.com" class="contact-box">
+                <span>✉️</span> velvetshark.studio@gmail.com
+            </a>
+
+            <a href="https://velvetshark-studio.blogspot.com" target="_blank" class="contact-box">
+                <span>📝</span> Visit My Blog
+            </a>
+        </div>
 
         <div class="footer-note">Est. 2026 • Stay Secure</div>
     </div>
