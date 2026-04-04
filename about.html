@@ -4,170 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Velvet Shark Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=DotGothic16&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=DotGothic16&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; 
-            --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); --peach: #FFDAB9;
-            --highlight-orange: #FF5A2E; /* Signature orange from your reference */
+            /* Dusty Purple Palette from the Blog reference */
+            --bg-top: #5c5071; 
+            --bg-bottom: #322a42;
+            --text-main: #f9f7f2;
+            --text-muted: #c7b9d1;
+            --accent-pink: #f2cbd6; 
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --border-glow: rgba(255, 255, 255, 0.1);
         }
 
         * { box-sizing: border-box; }
+
         body { 
-            margin: 0; font-family: 'Poppins', sans-serif; 
-            background: linear-gradient(135deg, var(--deep-purple), #4B0082); 
-            color: var(--cream); min-height: 100vh;
-            display: flex; flex-direction: column;
-            overflow-y: auto;
+            margin: 0; 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%); 
+            color: var(--text-main); 
+            min-height: 100vh;
+            display: flex; 
+            flex-direction: column;
+            overflow-x: hidden;
         }
         
-        header { width: 100%; padding: 2rem; text-align: center; background: var(--glass); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        header { 
+            width: 100%; 
+            padding: 3rem 1rem 2rem 1rem; 
+            text-align: center; 
+        }
 
-        /* --- THE PIXELATED GLITCH TITLE --- */
+        /* --- GLITCH TITLE --- */
         h1 { 
             font-family: 'DotGothic16', sans-serif;
             font-weight: normal;
-            font-size: 3.2rem;
-            letter-spacing: 6px;
-            color: var(--pastel-pink);
-            margin: 0 0 1rem 0; 
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            color: var(--accent-pink);
+            margin: 0 0 1.5rem 0; 
             text-transform: uppercase;
             position: relative;
-            text-shadow: 0 0 15px var(--lavender);
-            animation: text-flicker 4s infinite;
+            text-shadow: 0 0 10px rgba(242, 203, 214, 0.3);
         }
 
         h1::before, h1::after {
             content: "VELVET SHARK STUDIO";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.7;
-            filter: blur(0.5px);
+            opacity: 0.5;
         }
 
-        h1::before { color: #00fff9; z-index: -1; animation: glitch-drift 0.9s infinite alternate-reverse; }
-        h1::after { color: #ff00c1; z-index: -1; animation: glitch-drift 1.1s infinite alternate; }
-
-        @keyframes text-flicker {
-            0%, 92%, 94%, 99%, 100% { opacity: 1; color: var(--pastel-pink); }
-            93% { opacity: 0.8; color: var(--highlight-orange); }
-        }
+        h1::before { color: #a291b5; z-index: -1; animation: glitch-drift 1.2s infinite alternate-reverse; }
+        h1::after { color: #d1a5b1; z-index: -1; animation: glitch-drift 0.8s infinite alternate; }
 
         @keyframes glitch-drift {
-            0% { transform: translate(2px, -1px); clip-path: inset(10% 0 80% 0); }
-            20% { transform: translate(-2px, 1px); clip-path: inset(30% 0 20% 0); }
-            40% { transform: translate(1px, -1px); clip-path: inset(50% 0 45% 0); }
-            100% { transform: translate(-2px, -1px); clip-path: inset(0% 0 90% 0); }
+            0% { transform: translate(1px, -1px); clip-path: inset(10% 0 80% 0); }
+            50% { transform: translate(-1px, 1px); clip-path: inset(40% 0 30% 0); }
+            100% { transform: translate(1px, 0px); clip-path: inset(0% 0 90% 0); }
         }
 
-        /* --- NAVIGATION TABS --- */
+        /* --- NAVIGATION --- */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
         .nav a { 
             font-family: 'JetBrains Mono', monospace;
-            color: var(--cream); 
+            color: var(--text-main); 
             text-decoration: none; 
-            margin: 0 15px; 
             font-weight: 500; 
-            font-size: 1.1rem; 
-            transition: 0.3s; 
-            display: inline-block;
-            padding-bottom: 5px;
+            font-size: 0.95rem; 
+            transition: all 0.3s ease; 
+            padding-bottom: 4px;
             border-bottom: 2px solid transparent;
+            opacity: 0.7;
         }
 
         .nav a.active {
-            color: var(--pastel-pink);
-            border-bottom: 2px solid var(--pastel-pink);
-            text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
+            opacity: 1;
+            color: var(--accent-pink);
+            border-bottom: 2px solid var(--accent-pink);
         }
 
         .nav a:hover { 
-            color: var(--pastel-pink); 
-            text-shadow: 0 0 10px var(--pastel-pink);
-            transform: translateY(-2px);
+            opacity: 1;
+            color: var(--accent-pink);
         }
 
-        /* THE RESPONSIVE LAYOUT */
+        /* --- MAIN CONTENT --- */
         .main-content {
-            display: flex; flex-direction: column; align-items: center;
-            gap: 20px; max-width: 900px; width: 95%; margin: 2rem auto;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            max-width: 850px; 
+            width: 90%; 
+            margin: 1rem auto 4rem auto;
         }
 
         .about-card { 
-            width: 100%; background: var(--glass); 
-            backdrop-filter: blur(20px); border-radius: 25px; 
-            padding: 2rem; border: 1px solid rgba(255,255,255,0.1); text-align: center;
-        }
-        
-        .slogan-container {
-            width: 100%; max-width: 700px;
-            background: linear-gradient(135deg, rgba(255, 209, 220, 0.05), rgba(255, 218, 185, 0.05));
-            backdrop-filter: blur(10px); border-radius: 20px; 
-            padding: 25px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative; overflow: hidden; 
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%; 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 35px; 
+            padding: 3.5rem 2.5rem; 
+            border: 1px solid var(--border-glow); 
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        .slogan-text {
-            color: var(--pastel-pink); font-weight: 600; font-style: italic; font-size: 1rem;
-            line-height: 1.5; text-shadow: 2px 2px 6px rgba(0,0,0,0.8); z-index: 10; position: relative;
+        .shark-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+            opacity: 0.9;
         }
 
-        .bg-emoji { position: absolute; z-index: 1; opacity: 0.3; filter: blur(0.5px); pointer-events: none; }
-        .e1 { font-size: 1.8rem; top: 5%; left: 5%; animation: drift 12s infinite linear; } 
-        .e2 { font-size: 1.8rem; bottom: 5%; right: 5%; animation: drift 10s infinite linear reverse; } 
-        .e3 { font-size: 2.5rem; bottom: 10%; left: 15%; animation: drift 18s infinite linear; opacity: 0.15; } 
-        .e4 { font-size: 2rem; top: 10%; right: 15%; animation: drift 14s infinite linear; } 
+        h2 { 
+            font-size: 1.75rem; 
+            margin: 0 0 1.2rem 0; 
+            color: var(--accent-pink);
+            font-weight: 600;
+        }
 
-        @keyframes drift {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(30px, 15px) rotate(10deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
+        p { 
+            font-size: 1rem; 
+            line-height: 1.7; 
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        h4 {
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* --- SKILL BADGES --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
         }
 
         .skill-badge { 
-            display: inline-block; 
-            border: 1px solid var(--lavender); 
-            padding: 4px 12px; 
-            border-radius: 15px; 
-            margin: 4px; 
-            font-size: 0.75rem; 
-            background: rgba(255,255,255,0.05); 
-            font-family: 'JetBrains Mono', monospace; /* Applying technical font to badges */
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-main);
+            padding: 6px 18px; 
+            border-radius: 50px; 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            background: rgba(255, 255, 255, 0.03); 
+            transition: 0.3s;
+        }
+
+        .skill-badge:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-pink);
+            transform: translateY(-2px);
+        }
+
+        /* --- SLOGAN FOOTER --- */
+        .slogan-container {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .slogan-text {
+            color: var(--text-muted); 
+            font-weight: 300; 
+            font-style: italic; 
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>VELVET SHARK STUDIO</h1>
+        <h1>Velvet Shark Studio</h1>
         <div class="nav">
-            <a href="index.html">Home</a>
-            <a href="blog.html">Blog</a>
-            <a href="projects.html">Projects</a>
-            <a href="about.html" class="active">About</a>
-            <a href="contact.html">Contact</a>
+            <a href="#">Home</a>
+            <a href="#">Blog</a>
+            <a href="#">Projects</a>
+            <a href="#" class="active">About</a>
+            <a href="#">Contact</a>
         </div>
     </header>
 
     <div class="main-content">
         <div class="about-card">
-            <div style="font-size: 3rem; margin-bottom: 10px;">🦈</div>
-            <h2 style="margin: 10px 0;">Who is Velvet Shark?</h2>
-            <p style="font-size: 0.95rem; line-height: 1.6;">I am a cybersecurity enthusiast and a creative explorer. I believe technical work can be soft, colorful, and inviting. My journey involves breaking into systems while keeping the aesthetic perfectly "iced."</p>
+            <span class="shark-icon">🦈</span>
+            <h2>Who is Velvet Shark?</h2>
+            <p>
+                I am a cybersecurity enthusiast and a creative explorer. 
+                I believe technical work can be soft, colorful, and inviting. 
+                My journey involves breaking into systems while keeping the aesthetic perfectly "iced."
+            </p>
             
-            <h4 style="color: var(--lavender); margin-top: 20px; margin-bottom: 10px;">Current Skills</h4>
-            <div>
-                <div class="skill-badge">Nmap</div><div class="skill-badge">Python</div>
-                <div class="skill-badge">Forensics</div><div class="skill-badge">Linux Customization</div>
+            <h4>Current Skills</h4>
+            <div class="skills-container">
+                <span class="skill-badge">Nmap</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">Forensics</span>
+                <span class="skill-badge">Linux Customization</span>
             </div>
         </div>
 
         <div class="slogan-container">
-            <span class="bg-emoji e1">🐾</span>
-            <span class="bg-emoji e2">🌸</span>
-            <span class="bg-emoji e3">🦈</span>
-            <span class="bg-emoji e4">🛡️</span>
             <span class="slogan-text">
                 "Jack of all cards, master of none, but oftentimes better than a master of one"
             </span>
