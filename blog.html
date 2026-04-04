@@ -26,7 +26,7 @@
             position: relative;
         }
 
-        /* --- WATER SHIMMER LAYER --- */
+        /* --- BACKGROUND WATER SHIMMER --- */
         .water-layer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -61,7 +61,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* --- RESTORED PIXELATED GLITCH TITLE --- */
+        /* --- PIXELATED GLITCH TITLE --- */
         h1 { 
             font-family: 'DotGothic16', sans-serif;
             font-weight: normal;
@@ -72,7 +72,7 @@
             text-transform: uppercase;
             position: relative;
             text-shadow: 0 0 15px var(--lavender);
-            animation: text-flicker 4s infinite; /* Original Flicker */
+            animation: text-flicker 4s infinite;
         }
 
         h1::before, h1::after {
@@ -94,18 +94,16 @@
         @keyframes glitch-drift {
             0% { transform: translate(2px, -1px); clip-path: inset(10% 0 80% 0); }
             20% { transform: translate(-2px, 1px); clip-path: inset(30% 0 20% 0); }
-            40% { transform: translate(1px, -1px); clip-path: inset(50% 0 45% 0); }
             100% { transform: translate(-2px, -1px); clip-path: inset(0% 0 90% 0); }
         }
 
-        /* --- RESTORED GLOWING NAVIGATION --- */
+        /* --- GLOWING NAV --- */
         .nav { margin-top: 1.5rem; }
         .nav a { 
             font-family: 'JetBrains Mono', monospace;
             color: var(--cream); 
             text-decoration: none; 
             margin: 0 15px; 
-            font-weight: 500; 
             font-size: 1.1rem; 
             transition: 0.3s; 
             display: inline-block;
@@ -116,7 +114,7 @@
         .nav a.active {
             color: var(--pastel-pink);
             border-bottom: 2px solid var(--pastel-pink);
-            text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender); /* Glowing Effect */
+            text-shadow: 0 0 10px var(--pastel-pink), 0 0 20px var(--lavender);
         }
 
         .nav a:hover { 
@@ -125,15 +123,16 @@
             transform: translateY(-2px);
         }
 
-        /* --- BLOG SECTION --- */
+        /* --- BLOG CARDS --- */
         .container { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+
+        .blog-link { text-decoration: none; color: inherit; display: block; margin-bottom: 1.5rem; }
 
         .blog-card {
             background: var(--glass);
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 1.5rem;
-            margin-bottom: 1.5rem;
             border: 1px solid rgba(255,255,255,0.1);
             display: flex;
             justify-content: space-between;
@@ -144,21 +143,16 @@
         .blog-card:hover { 
             background: rgba(255,255,255,0.15); 
             transform: translateX(10px);
+            cursor: pointer;
         }
 
         .blog-card h2 { margin: 0; color: var(--pastel-pink); font-size: 1.25rem; }
-        .blog-card p { margin: 5px 0 0 0; font-size: 0.95rem; color: var(--cream); opacity: 0.8; }
+        .blog-card p { margin: 5px 0 0 0; font-size: 0.95rem; opacity: 0.8; }
         .date { font-size: 0.8rem; color: var(--soft-blue); font-family: 'JetBrains Mono', monospace; }
 
-        /* --- DECO ELEMENTS --- */
-        .deco-shark { 
-            position: fixed; top: 45%; left: 5%; font-size: 5rem; 
-            opacity: 0.15; z-index: -1; animation: float 8s infinite ease-in-out; 
-        }
-        .deco-bubbles { 
-            position: fixed; bottom: 8%; right: 8%; font-size: 4rem; 
-            opacity: 0.2; z-index: -1; animation: float 6s infinite ease-in-out reverse; 
-        }
+        /* --- DECO --- */
+        .deco-shark { position: fixed; top: 45%; left: 5%; font-size: 5rem; opacity: 0.15; z-index: -1; animation: float 8s infinite ease-in-out; }
+        .deco-bubbles { position: fixed; bottom: 8%; right: 8%; font-size: 4rem; opacity: 0.2; z-index: -1; animation: float 6s infinite ease-in-out reverse; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -168,9 +162,7 @@
 </head>
 <body>
 
-    <div class="water-layer">
-        <div class="caustics"></div>
-    </div>
+    <div class="water-layer"><div class="caustics"></div></div>
 
     <header>
         <h1>VELVET SHARK STUDIO</h1>
@@ -186,21 +178,25 @@
     <div class="container">
         <h2 style="margin-bottom: 25px; color: var(--lavender); font-family: 'JetBrains Mono', monospace;">Latest Writeups 📝</h2>
         
-        <div class="blog-card">
-            <div>
-                <h2>Voyager: Privilege Escalation</h2>
-                <p>How I exploited a SUID binary to gain root access.</p>
+        <a href="ai-supply-chain-hack.html" class="blog-link">
+            <div class="blog-card">
+                <div>
+                    <h2>The AI Supply Chain Hack That Turned Security Into the Problem</h2>
+                    <p>How a compromised scanner turned a popular AI library into a data exfiltration tool.</p>
+                </div>
+                <div class="date">2026-04-04</div>
             </div>
-            <div class="date">2026-03-24</div>
-        </div>
+        </a>
 
-        <div class="blog-card">
-            <div>
-                <h2>Analyzing Windows Event Logs</h2>
-                <p>Tracking unauthorized shutdowns in .evtx files.</p>
+        <a href="#" class="blog-link">
+            <div class="blog-card">
+                <div>
+                    <h2>Voyager: Privilege Escalation</h2>
+                    <p>How I exploited a SUID binary to gain root access.</p>
+                </div>
+                <div class="date">2026-03-24</div>
             </div>
-            <div class="date">2026-03-15</div>
-        </div>
+        </a>
     </div>
 
     <div class="deco-shark">🦈</div>
