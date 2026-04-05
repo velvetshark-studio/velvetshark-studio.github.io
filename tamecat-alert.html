@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMECAT Alert | Velvet Shark Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: #1a0f2e; color: var(--cream); line-height: 1.8; }
+        header { padding: 2rem; text-align: center; background: var(--glass); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .container { max-width: 800px; margin: 4rem auto; padding: 0 1.5rem; }
+        .back-link { color: var(--pastel-pink); text-decoration: none; font-family: 'JetBrains Mono', monospace; display: block; margin-bottom: 2rem; }
+        .content { background: var(--glass); padding: 3rem; border-radius: 25px; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+        h1 { color: var(--pastel-pink); font-size: 2.2rem; line-height: 1.3; }
+        h2 { color: var(--lavender); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-top: 2rem; }
+        .date { color: var(--lavender); opacity: 0.6; font-family: 'JetBrains Mono', monospace; margin-bottom: 2rem; display: block; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .alert-box { background: rgba(255, 90, 46, 0.1); border-left: 4px solid #FF5A2E; padding: 1rem 1.5rem; margin: 2rem 0; border-radius: 0 10px 10px 0; }
+    </style>
+</head>
+<body>
+    <header><h1 style="font-family:'DotGothic16', sans-serif; margin:0;">VELVET SHARK STUDIO</h1></header>
+    <div class="container">
+        <a href="blog.html" class="back-link">← Back to Writing</a>
+        <article class="content">
+            <span class="date">DATE: January 25, 2026 | TAG: #THREAT-ALERT</span>
+            <h1>Cyber Threat Alert: Don't let TAMECAT Turn Your Browser into a Backdoor! 🚨</h1>
+            
+            <p>A new piece of malware called <strong>TAMECAT</strong> has recently surfaced, and it's far from an average threat. This PowerShell-based backdoor is utilized by the state-sponsored group <strong>APT42 (Charming Kitten)</strong> and is specifically designed to snatch credentials directly from Google Chrome and Microsoft Edge.</p>
+
+            <div class="alert-box">
+                <strong>Why TAMECAT is Dangerous:</strong>
+                <ul>
+                    <li><strong>Living-Off-The-Land (LOTL):</strong> Instead of loud, obvious viruses, it uses legitimate system tools like PowerShell. This makes it a digital chameleon, appearing as normal activity to many defense systems.</li>
+                    <li><strong>The Goal:</strong> Once inside, it targets encrypted credentials stored in your browser to exfiltrate sensitive login data.</li>
+                </ul>
+            </div>
+
+            <h2>Defensive Strategies</h2>
+            <p>Strengthening your security posture requires a layered defense:</p>
+            <ul>
+                <li><strong>Ditch Browser Password Saving:</strong> Saving passwords in-browser makes them a prime target for backdoors like TAMECAT.</li>
+                <li><strong>Enable MFA:</strong> Multi-Factor Authentication provides the critical second layer of defense if credentials are stolen.</li>
+                <li><strong>Monitor PowerShell:</strong> Keep a proactive eye out for unusual PowerShell activity on your endpoints.</li>
+                <li><strong>Regular Updates:</strong> Ensure all software is patched against known vulnerabilities.</li>
+            </ul>
+        </article>
+    </div>
+</body>
+</html>
