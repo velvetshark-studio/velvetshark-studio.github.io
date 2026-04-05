@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offensive Security Lab | Velvet Shark Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=DotGothic16&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Reusing the core branding styles */
+        :root { --deep-purple: #2D1B4D; --lavender: #E6E6FA; --pastel-pink: #FFD1DC; --soft-blue: #AEC6CF; --cream: #FFFDD0; --glass: rgba(255, 255, 255, 0.1); }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: #1a0f2e; color: var(--cream); line-height: 1.7; }
+        header { padding: 2.5rem; text-align: center; background: var(--glass); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        h1 { font-family: 'DotGothic16', sans-serif; color: var(--pastel-pink); letter-spacing: 4px; }
+        
+        .container { max-width: 850px; margin: 4rem auto; padding: 0 1.5rem; }
+        .back-btn { color: var(--pastel-pink); text-decoration: none; font-family: 'JetBrains Mono', monospace; display: block; margin-bottom: 2rem; }
+        
+        .content-box { background: var(--glass); padding: 3rem; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(20px); }
+        h2 { font-family: 'JetBrains Mono', monospace; color: var(--pastel-pink); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-top: 2rem; }
+        h3 { color: var(--lavender); margin-bottom: 5px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .meta { font-family: 'JetBrains Mono', monospace; color: var(--soft-blue); font-size: 0.85rem; margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+    <header><h1>VELVET SHARK STUDIO</h1></header>
+    <div class="container">
+        <a href="projects.html" class="back-btn">← Back to Projects</a>
+        <div class="content-box">
+            <div class="meta">DATE: February 15, 2026 | CATEGORY: Penetration Testing</div>
+            <h2 style="margin-top:0;">Offensive Security Lab & Initial Access</h2>
+            
+            <h3>Overview</h3>
+            <p>Established a dedicated, isolated research environment to simulate real-world cyberattacks and defense strategies. The primary goal of this project was to validate a secure "Attacker vs. Target" workflow and successfully execute a known exploit against a vulnerable Linux service.</p>
+
+            <h3>The Architecture</h3>
+            <p>The lab is built on <strong>VMware Workstation Pro 25H2</strong>, utilizing a strictly isolated virtual network to ensure no traffic escapes into the local host network.</p>
+            <ul>
+                <li><strong>Attacker Node:</strong> Kali Linux (Rolling Edition)</li>
+                <li><strong>Target Node:</strong> Metasploitable2</li>
+                <li><strong>Networking:</strong> Host-Only Adapter (Internal Sandbox)</li>
+            </ul>
+
+            <h3>Methodology & Execution</h3>
+            <p>The exploitation followed the standard <strong>PTES</strong> methodology:</p>
+            <ul>
+                <li><strong>Reconnaissance:</strong> Stealthy SYN scan using Nmap to identify active services.</li>
+                <li><strong>Vulnerability Analysis:</strong> Cross-referenced services (VSFTPD/Bind) against Exploit-DB.</li>
+                <li><strong>Exploitation:</strong> Leveraged Metasploit Framework (MSF) to deliver payloads.</li>
+                <li><strong>Post-Exploitation:</strong> Established a reverse shell session to verify system-level access.</li>
+            </ul>
+
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li><strong>Environment Parity:</strong> Hypervisor isolation is critical for safe testing.</li>
+                <li><strong>Service Mapping:</strong> Identifying specific versions is 90% of the work.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
