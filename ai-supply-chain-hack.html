@@ -10,9 +10,8 @@
             --deep-purple: #2D1B4D; 
             --lavender: #E6E6FA; 
             --pastel-pink: #FFD1DC; 
-            --soft-blue: #AEC6CF; 
             --cream: #FFFDD0; 
-            --glass: rgba(255, 255, 255, 0.1); 
+            --glass: rgba(255, 255, 255, 0.08); 
         }
 
         body { 
@@ -24,25 +23,26 @@
             line-height: 1.8;
         }
 
-        /* --- STATIC HEADER --- */
         header { 
-            padding: 3rem 2rem; 
+            padding: 3.5rem 2rem; 
             text-align: center; 
-            background: #1a0f2e;
+            background-color: var(--deep-purple); 
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .site-title { 
             font-family: 'Poppins', sans-serif; 
             font-weight: 600;
-            font-size: 2.8rem; 
-            letter-spacing: 4px; 
+            font-size: 3.2rem; 
+            letter-spacing: 6px; 
             color: var(--pastel-pink); 
             text-transform: uppercase; 
             margin: 0; 
+            text-shadow: none; 
         }
 
-        /* --- ARTICLE LAYOUT --- */
-        .container { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+        .container { max-width: 800px; margin: 3rem auto; padding: 0 1.5rem; }
         
         .back-btn { 
             display: inline-block; 
@@ -60,7 +60,6 @@
             border: 1px solid rgba(255,255,255,0.05); 
         }
         
-        /* Matching the font style from the TAMECAT screenshot */
         .article-content h2 { 
             font-family: 'Poppins', sans-serif; 
             font-weight: 600;
@@ -90,7 +89,6 @@
             background: rgba(255, 255, 255, 0.03);
             border-radius: 0 10px 10px 0;
         }
-
     </style>
 </head>
 <body>
