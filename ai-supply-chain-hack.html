@@ -126,7 +126,8 @@
             line-height: 1.8; 
         }
         
-        .article-content h2 { font-family: 'JetBrains Mono', monospace; color: var(--pastel-pink); margin-top: 0; font-size: 1.8rem; }
+        /* --- CHANGED: TITLE IS NOW MONOSPACE (Matches Tamecat) --- */
+        .article-content h2 { font-family: 'JetBrains Mono', monospace; color: var(--pastel-pink); margin-top: 2rem; font-size: 1.8rem; }
         .article-content p { margin-bottom: 1.5rem; font-size: 1.05rem; opacity: 0.9; }
         
         blockquote { 
@@ -138,6 +139,9 @@
             background: rgba(255, 209, 220, 0.05);
         }
         
+        ul { padding-left: 20px; margin-bottom: 1.5rem; }
+        li { margin-bottom: 10px; opacity: 0.9; }
+
         .deco-shark { 
             position: fixed; 
             top: 45%; left: 5%; 
@@ -164,7 +168,7 @@
         <a href="blog.html" class="back-btn">← Back to writing</a>
         
         <article class="article-content">
-            <h2>The AI Supply Chain Hack That Turned Security Into the Problem</h2>
+            <h2 style="margin-top:0;">The AI Supply Chain Hack That Turned Security Into the Problem</h2>
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--soft-blue); margin-bottom: 2rem;">[ DATE: 2026-04-04 | TAG: #AI-SECURITY ]</div>
             
             <p>This hack just surfaced recently, and it’s honestly wild. There’s a Python library called <strong>LiteLLM</strong> used by giants like Stripe, Netflix, and Google. If you’re building anything with AI in Python, there’s a good chance it’s somewhere in your stack.</p>
